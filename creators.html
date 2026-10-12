@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Devenir créateur — Chronicles MG</title>
+    <meta name="description"
+        content="Publie tes BD ou tes romans sur Chronicles. Réservé aux créateurs malagasy. Tu fixes tes prix, tu gardes la majeure partie de chaque vente." />
+    <style>
+        /* ============================================================
+       TOKENS
+       ============================================================ */
+        :root {
+            --blue-600: #2563eb;
+            --blue-700: #1d4ed8;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-600: #4b5563;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --radius: 12px;
+            --max-width: 1100px;
+            --header-height: 64px;
+            --gutter: 14px;
+
+            --ink: #15140F;
+            --panel: #FFFDF6;
+            --line: 3px;
+            --shadow-sm: 3px 3px 0 var(--ink);
+            --shadow-md: 6px 6px 0 var(--ink);
+            --shadow-lg: 9px 9px 0 var(--ink);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--header-height) + 16px);
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            color: var(--gray-800);
+            background: var(--white);
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--blue-600);
+            outline-offset: 3px;
+        }
+
+        /* ============================================================
+       HEADER
+       ============================================================ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0 1.25rem;
+            z-index: 100;
+        }
+
+        .header__left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            min-width: 0;
+        }
+
+        .header__menu-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            flex: none;
+            background: var(--panel);
+            border: 2.5px solid var(--ink);
+            border-radius: 8px;
+            box-shadow: 3px 3px 0 var(--ink);
+            color: var(--ink);
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            padding: 0;
+        }
+
+        .header__menu-btn:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0 var(--ink);
+        }
+
+        .header__menu-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 var(--ink);
+        }
+
+        .header__menu-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .header__nav {
+            display: none;
+            gap: 1.6rem;
+        }
+
+        .header__nav a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.15s;
+            padding-bottom: 4px;
+        }
+
+        .header__nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -2px;
+            height: 1.5px;
+            background: var(--blue-600);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.2s ease;
+        }
+
+        .header__nav a:hover {
+            color: var(--gray-900);
+        }
+
+        .header__nav a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .header__nav a.is-active {
+            color: var(--blue-600);
+            font-weight: 700;
+        }
+
+        .header__nav a.is-active::after {
+            transform: scaleX(1);
+            height: 2px;
+        }
+
+        .header__right {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex: none;
+            margin-left: auto;
+        }
+
+        .language-switcher {
+            display: flex;
+            align-items: center;
+            background: var(--gray-100);
+            border-radius: 999px;
+            padding: 0.4rem 0.7rem;
+            gap: 0.35rem;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+
+        .language-switcher:hover {
+            background: var(--gray-200);
+        }
+
+        .language-switcher svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--gray-800);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            pointer-events: none;
+        }
+
+        .language-switcher select {
+            background: transparent;
+            border: none;
+            padding: 0;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .header__cta {
+            background: var(--blue-600);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .header__cta:hover {
+            background: var(--blue-700);
+        }
+
+        @media (min-width: 800px) {
+            .header {
+                padding: 0 2rem;
+            }
+
+            .header__nav {
+                display: flex;
+            }
+
+            .header__menu-btn {
+                display: none;
+            }
+        }
+
+        /* ============================================================
+       MOBILE NAV — full-screen, clean text links, bottom action bar
+       ============================================================ */
+        .mobile-nav {
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--white);
+            z-index: 99;
+            padding: 0.75rem 1.25rem 1.25rem;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(-8px);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: transform 0.22s ease, opacity 0.22s ease, visibility 0.22s;
+            overflow-y: auto;
+        }
+
+        .mobile-nav.is-open {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        @media (min-width: 800px) {
+            .mobile-nav {
+                display: none;
+            }
+        }
+
+        .mobile-nav__close {
+            align-self: flex-end;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            flex: none;
+            background: transparent;
+            border: none;
+            color: var(--gray-800);
+            cursor: pointer;
+            border-radius: 10px;
+            padding: 0;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+
+        .mobile-nav__close:hover,
+        .mobile-nav__close:focus-visible {
+            background: var(--gray-100);
+            color: var(--gray-900);
+        }
+
+        .mobile-nav__close svg {
+            width: 22px;
+            height: 22px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .mobile-nav__list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            margin-top: 0.5rem;
+        }
+
+        .mobile-nav__list a {
+            display: block;
+            padding: 0.95rem 0.25rem;
+            color: var(--blue-700);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            line-height: 1.4;
+            transition: color 0.15s ease, padding-left 0.2s ease;
+        }
+
+        .mobile-nav__list a:hover,
+        .mobile-nav__list a:focus-visible {
+            color: var(--blue-600);
+            padding-left: 0.5rem;
+        }
+
+        .mobile-nav__list a.is-active {
+            color: var(--blue-600);
+            font-weight: 700;
+        }
+
+        .mobile-nav__footer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--gray-200);
+            margin-top: auto;
+        }
+
+        .mobile-nav__btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            padding: 0.85rem 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .mobile-nav__btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            flex: none;
+        }
+
+        .mobile-nav__btn--outline {
+            background: var(--white);
+            color: var(--blue-700);
+            border: 1.5px solid var(--blue-600);
+        }
+
+        .mobile-nav__btn--outline:hover {
+            background: var(--gray-50);
+        }
+
+        .mobile-nav__btn--primary {
+            background: var(--blue-600);
+            color: var(--white);
+            border: 1.5px solid var(--blue-600);
+        }
+
+        .mobile-nav__btn--primary:hover {
+            background: var(--blue-700);
+            border-color: var(--blue-700);
+        }
+
+        /* ============================================================
+       LAYOUT
+       ============================================================ */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        @media (min-width: 800px) {
+            .container {
+                padding: 0 2rem;
+            }
+        }
+
+        /* ============================================================
+       BUTTONS
+       ============================================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.35rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-align: center;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn--primary {
+            background: var(--blue-600);
+            color: var(--white);
+        }
+
+        .btn--primary:hover {
+            background: var(--blue-700);
+        }
+
+        .btn--outline {
+            background: transparent;
+            color: var(--gray-800);
+            border: 1.5px solid var(--gray-200);
+        }
+
+        .btn--outline:hover {
+            border-color: var(--blue-600);
+            color: var(--blue-600);
+        }
+
+        /* ============================================================
+       HERO — split layout, content left, illustration right
+       ============================================================ */
+        .hero-creators {
+            position: relative;
+            padding: calc(var(--header-height) + 3.5rem) 0 4rem;
+        }
+
+        @media (min-width: 900px) {
+            .hero-creators {
+                padding: calc(var(--header-height) + 5rem) 0 6rem;
+            }
+        }
+
+        .hero-creators__inner {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        @media (min-width: 900px) {
+            .hero-creators__inner {
+                grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+                gap: 5rem;
+                align-items: start;
+            }
+        }
+
+        /* --- visual column --- */
+        .hero-creators__visual {
+            position: relative;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1.5rem;
+            min-height: 360px;
+            padding: 1rem 0 0;
+        }
+
+        @media (min-width: 900px) {
+            .hero-creators__visual {
+                display: flex;
+            }
+        }
+
+        /* Soft decorative backdrop — grounds the panel */
+        .hero-creators__visual::before {
+            content: "";
+            position: absolute;
+            top: 150px;
+            left: 50%;
+            width: 340px;
+            height: 340px;
+            transform: translate(-50%, -50%);
+            background: var(--blue-600);
+            opacity: 0.06;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-creators__panel {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 250px;
+            height: 250px;
+            background: var(--panel);
+            border: 4px solid var(--ink);
+            box-shadow: 8px 8px 0 var(--ink);
+            border-radius: 12px;
+            color: var(--blue-600);
+            transform: rotate(-4deg);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.35s ease;
+        }
+
+        .hero-creators__panel:hover {
+            transform: rotate(-1deg) scale(1.03);
+            box-shadow: 12px 12px 0 var(--ink);
+        }
+
+        .hero-creators__panel svg {
+            width: 120px;
+            height: 120px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.4;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* --- comic ink badge under the panel --- */
+        .hero-creators__badge {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.55rem 1.1rem;
+            background: var(--panel);
+            color: var(--blue-600);
+            border: 2.5px solid var(--ink);
+            border-radius: 8px;
+            box-shadow: 4px 4px 0 var(--ink);
+            font-size: 0.72rem;
+            font-weight: 900;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transform: rotate(-2deg);
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.25s ease;
+        }
+
+        .hero-creators__badge:hover {
+            transform: rotate(0deg) translateY(-2px);
+            box-shadow: 6px 6px 0 var(--ink);
+        }
+
+        .hero-creators__badge svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            flex: none;
+        }
+
+        /* --- sparkles, framing the panel --- */
+        .hero-creators__sparkle {
+            position: absolute;
+            color: var(--blue-600);
+            pointer-events: none;
+            z-index: 2;
+            animation: hero-sparkle 3.2s ease-in-out infinite;
+        }
+
+        .hero-creators__sparkle svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+        }
+
+        .hero-creators__sparkle--1 {
+            top: 4%;
+            right: 10%;
+            width: 32px;
+            height: 32px;
+            animation-delay: 0s;
+        }
+
+        .hero-creators__sparkle--2 {
+            top: 60%;
+            left: 6%;
+            width: 22px;
+            height: 22px;
+            animation-delay: 1.3s;
+        }
+
+        @keyframes hero-sparkle {
+
+            0%,
+            100% {
+                opacity: 0.35;
+                transform: scale(0.85) rotate(-12deg);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.12) rotate(14deg);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-creators__sparkle {
+                animation: none;
+                opacity: 0.65;
+            }
+        }
+
+        /* --- content column --- */
+        .hero-creators__content {
+            text-align: left;
+        }
+
+        .hero-creators__title {
+            font-weight: 900;
+            font-size: clamp(2.15rem, 10vw, 3.5rem);
+            line-height: 1.08;
+            letter-spacing: -0.038em;
+            color: var(--gray-900);
+            margin: 0 0 1.5rem;
+        }
+
+        .hero-creators__title .highlight {
+            color: var(--blue-600);
+            background-image: linear-gradient(var(--gray-100), var(--gray-100));
+            background-repeat: no-repeat;
+            background-position: 0 82%;
+            background-size: 100% 0.28em;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+            padding: 0 2px;
+        }
+
+        .hero-creators__subtitle {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--gray-600);
+            max-width: 52ch;
+            margin: 0 auto 2.25rem;
+        }
+
+        .hero-creators__actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            align-items: flex-start;
+        }
+
+        @media (min-width: 700px) {
+            .hero-creators__actions {
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-items: center;
+                gap: 0.75rem;
+            }
+        }
+
+        .hero-creators__btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.95rem 1.6rem;
+            font-size: 0.98rem;
+            font-weight: 700;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        @media (min-width: 700px) {
+            .hero-creators__btn {
+                width: auto;
+            }
+        }
+
+        .hero-creators__btn--primary {
+            background: var(--blue-600);
+            color: var(--white);
+            border: none;
+        }
+
+        .hero-creators__btn--primary:hover {
+            background: var(--blue-700);
+        }
+
+        .hero-creators__btn--outline {
+            background: transparent;
+            color: var(--gray-800);
+            border: 1.5px solid var(--gray-200);
+        }
+
+        .hero-creators__btn--outline:hover {
+            border-color: var(--blue-600);
+            color: var(--blue-600);
+        }
+
+        /* ============================================================
+       SECTION HEADERS
+       ============================================================ */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section__header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section__eyebrow {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--blue-700);
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+            margin-bottom: 1.1rem;
+        }
+
+        .section__title {
+            font-weight: 900;
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            letter-spacing: -0.025em;
+            line-height: 1.15;
+            color: var(--ink);
+            margin: 0 auto 0.85rem;
+            max-width: 24ch;
+        }
+
+        .section__title .highlight {
+            color: var(--blue-600);
+            background-image: linear-gradient(var(--gray-100), var(--gray-100));
+            background-repeat: no-repeat;
+            background-position: 0 82%;
+            background-size: 100% 0.3em;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+            padding: 0 2px;
+        }
+
+        .section__subtitle {
+            color: var(--gray-600);
+            font-size: 1rem;
+            max-width: 60ch;
+            margin: 0 auto;
+            line-height: 1.65;
+        }
+
+        /* ============================================================
+       WHAT YOU CAN DO
+       ============================================================ */
+        .features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1000px) {
+            .features {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .feature {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem 1.35rem 1.35rem;
+            background: var(--panel);
+            border: 3px solid var(--ink);
+            box-shadow: var(--shadow-md);
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.25s ease;
+            --tilt: -1.2deg;
+            transform: rotate(var(--tilt));
+        }
+
+        .feature:nth-child(even) {
+            --tilt: 1.2deg;
+        }
+
+        .feature:hover,
+        .feature:focus-within {
+            transform: rotate(0deg) translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature__icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            margin-bottom: 1rem;
+            background: var(--blue-600);
+            color: var(--white);
+            border: 3px solid var(--ink);
+            border-radius: 10px;
+            box-shadow: 3px 3px 0 var(--ink);
+            transform: rotate(-4deg);
+        }
+
+        .feature:nth-child(even) .feature__icon {
+            transform: rotate(4deg);
+        }
+
+        .feature__icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .feature__title {
+            font-size: 1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            color: var(--ink);
+            margin-bottom: 0.5rem;
+            line-height: 1.25;
+        }
+
+        .feature__text {
+            color: var(--gray-800);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 480px) {
+
+            .feature,
+            .feature:nth-child(even) {
+                --tilt: 0deg;
+            }
+        }
+
+        /* ============================================================
+       RULES
+       ============================================================ */
+        .rules-section {
+            background-color: var(--white);
+            background-image: radial-gradient(rgba(21, 20, 15, 0.055) 1.5px, transparent 1.5px);
+            background-size: 18px 18px;
+        }
+
+        .rules {
+            position: relative;
+            background: var(--white);
+            padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
+            max-width: 960px;
+            margin: 0 auto;
+            box-shadow: 8px 8px 0 var(--ink);
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+
+        @media (min-width: 800px) {
+            .rules {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+        }
+
+        .rules::before,
+        .rules::after,
+        .rules__marks::before,
+        .rules__marks::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 4px solid var(--ink);
+            pointer-events: none;
+        }
+
+        .rules::before {
+            top: -4px;
+            left: -4px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .rules::after {
+            top: -4px;
+            right: -4px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .rules__marks::before {
+            bottom: -4px;
+            left: -4px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .rules__marks::after {
+            bottom: -4px;
+            right: -4px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .rules__col {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .rules__heading {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.05rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            color: var(--ink);
+            margin-bottom: 0.25rem;
+        }
+
+        .rules__badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            flex: none;
+            border: 3px solid var(--ink);
+            border-radius: 8px;
+            box-shadow: 3px 3px 0 var(--ink);
+            font-size: 1rem;
+            font-weight: 900;
+            color: var(--ink);
+            background: var(--panel);
+            transform: rotate(-6deg);
+        }
+
+        .rules__badge--refuse {
+            background: var(--blue-600);
+            color: var(--white);
+        }
+
+        .rules__list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .rules__list li {
+            position: relative;
+            padding-left: 1.75rem;
+            color: var(--gray-800);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .rules__list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.4rem;
+            width: 14px;
+            height: 14px;
+            border: 2.5px solid var(--blue-600);
+            border-radius: 3px;
+        }
+
+        .rules__col--accept .rules__list li::before {
+            background: var(--blue-600);
+        }
+
+        .rules__list li strong {
+            color: var(--ink);
+            font-weight: 800;
+        }
+
+        /* ============================================================
+       WHO
+       ============================================================ */
+        .who {
+            position: relative;
+            text-align: center;
+        }
+
+        .who .section__header {
+            margin-bottom: 1.25rem;
+        }
+
+        .who__statement {
+            font-weight: 900;
+            font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+            line-height: 1.2;
+            letter-spacing: -0.025em;
+            color: var(--ink);
+            max-width: 26ch;
+            margin: 0 auto 1.5rem;
+        }
+
+        .who__statement .underline {
+            color: var(--blue-600);
+            background-image: linear-gradient(var(--gray-100), var(--gray-100));
+            background-repeat: no-repeat;
+            background-position: 0 85%;
+            background-size: 100% 0.32em;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+            padding: 0 2px;
+        }
+
+        .who__note {
+            color: var(--gray-600);
+            font-size: 1rem;
+            max-width: 60ch;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ============================================================
+       FOUNDING CREATORS — wave band, aligned with footer
+       ============================================================ */
+        .founding {
+            position: relative;
+            background-color: var(--blue-600);
+            background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1.5px, transparent 1.5px);
+            background-size: 14px 14px;
+            padding: 3.5rem 0 4rem;
+            margin-top: 5rem;
+        }
+
+        .founding::before,
+        .founding::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 45px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%232563eb' d='M0,70 C240,110 480,30 720,70 C960,110 1200,30 1440,70 L1440,120 L0,120 Z'/%3E%3C/svg%3E");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            pointer-events: none;
+        }
+
+        .founding::before {
+            bottom: 100%;
+        }
+
+        .founding::after {
+            top: 100%;
+            transform: rotate(180deg);
+        }
+
+        @media (min-width: 900px) {
+            .founding {
+                padding: 4.5rem 0 5rem;
+                margin-top: 6.5rem;
+            }
+
+            .founding::before,
+            .founding::after {
+                height: 70px;
+            }
+        }
+
+        .founding__inner {
+            width: 100%;
+            padding: 0 1.25rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+            text-align: left;
+        }
+
+        @media (min-width: 800px) {
+            .founding__inner {
+                padding: 0 2rem;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .founding__inner {
+                grid-template-columns: 1fr auto;
+                gap: 3rem;
+            }
+        }
+
+        .founding__text h2 {
+            color: var(--white);
+            font-size: clamp(1.4rem, 2.8vw, 2rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+        }
+
+        .founding__text p {
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 56ch;
+        }
+
+        .founding__cta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            align-items: flex-start;
+        }
+
+        @media (min-width: 900px) {
+            .founding__cta {
+                align-items: flex-end;
+            }
+        }
+
+        .founding__btn {
+            background: var(--panel);
+            color: var(--ink);
+            border: 3px solid var(--ink);
+            box-shadow: 5px 5px 0 var(--ink);
+            padding: 0.9rem 1.6rem;
+            font-size: 0.8rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border-radius: 8px;
+            width: min(100%, 320px);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+
+        @media (min-width: 900px) {
+            .founding__btn {
+                width: auto;
+                min-width: 260px;
+            }
+        }
+
+        .founding__btn:hover {
+            background: var(--white);
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0 var(--ink);
+        }
+
+        /* ============================================================
+       FOOTER
+       ============================================================ */
+        .footer {
+            background: var(--gray-900);
+            color: #f8fafc;
+            padding: 3rem 0;
+            font-size: 0.9rem;
+        }
+
+        .footer__inner {
+            padding: 0 1.25rem;
+        }
+
+        @media (min-width: 800px) {
+            .footer__inner {
+                padding: 0 2rem;
+            }
+        }
+
+        .footer__content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            padding-bottom: 3rem;
+        }
+
+        @media (min-width: 640px) {
+            .footer__content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2.75rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .footer__content {
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+                gap: 3rem;
+            }
+        }
+
+        .footer__brand h3 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer__badge {
+            background: var(--blue-600);
+            color: var(--white);
+            font-size: 0.6rem;
+            padding: 0.15rem 0.45rem;
+            border-radius: 4px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .footer__brand p {
+            color: #94a3b8;
+            line-height: 1.65;
+            margin-bottom: 1.5rem;
+            max-width: 34ch;
+        }
+
+        .footer__socials {
+            display: flex;
+            gap: 0.6rem;
+        }
+
+        .footer__socials a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.15s;
+        }
+
+        .footer__socials a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+        }
+
+        .footer__socials svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .footer__col h4 {
+            font-size: 0.92rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            color: var(--white);
+            margin-bottom: 1.1rem;
+        }
+
+        .footer__col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .footer__col a {
+            color: #f8fafc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.15s;
+        }
+
+        .footer__col a:hover {
+            color: var(--blue-600);
+        }
+
+        .footer__bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem 0 0;
+            text-align: center;
+            font-size: 0.78rem;
+            color: #94a3b8;
+            letter-spacing: 0.03em;
+        }
+
+        /* ============================================================
+       FEEDBACK
+       ============================================================ */
+        .feedback {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            background: var(--gray-900);
+            color: var(--white);
+            padding: 0.6rem 1rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: transform 0.2s;
+            z-index: 99;
+        }
+
+        .feedback:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ============================================================
+       SMALL-PHONE TOKENS
+       ============================================================ */
+        @media (max-width: 480px) {
+            :root {
+                --shadow-sm: 3px 3px 0 var(--ink);
+                --shadow-md: 5px 5px 0 var(--ink);
+                --shadow-lg: 7px 7px 0 var(--ink);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header__left">
+            <button class="header__menu-btn" type="button" aria-label="Ouvrir le menu" aria-expanded="false"
+                aria-controls="mobile-nav">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+            <nav class="header__nav" aria-label="Navigation principale">
+                <a href="home.html">Accueil</a>
+                <a href="creators.html" class="is-active" aria-current="page">Créateurs</a>
+                <a href="pricing.html">Tarification</a>
+                <a href="announcement.html">Annonces</a>
+                <a href="about.html">À propos</a>
+            </nav>
+        </div>
+        <div class="header__right">
+            <div class="language-switcher">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path
+                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                    </path>
+                </svg>
+                <select aria-label="Changer de langue">
+                    <option value="fr">FR</option>
+                    <option value="en">EN</option>
+                    <option value="mg">MG</option>
+                </select>
+            </div>
+            <a href="login.html" class="header__cta">Créer un compte</a>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Navigation mobile" hidden>
+
+        <button class="mobile-nav__close" type="button" aria-label="Fermer le menu">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+
+        <ul class="mobile-nav__list">
+            <li><a href="home.html">Accueil</a></li>
+            <li><a href="creators.html" class="is-active" aria-current="page">Créateurs</a></li>
+            <li><a href="pricing.html">Tarification</a></li>
+            <li><a href="announcement.html">Annonces</a></li>
+            <li><a href="about.html">À propos</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <!-- ===== HERO ===== -->
+        <section class="hero-creators">
+            <div class="container">
+                <div class="hero-creators__inner">
+
+                    <div class="hero-creators__content">
+                        <h1 class="hero-creators__title">
+                            Publie tes histoires, <span class="highlight">à ta façon</span>.
+                        </h1>
+                        <p class="hero-creators__subtitle">
+                            BD ou roman, au chapitre ou par abonnement. Tu fixes tes prix, tu gardes la
+                            majorité des revenus, et Chronicles s'occupe du reste.
+                        </p>
+                        <div class="hero-creators__actions">
+                            <a href="login.html" class="hero-creators__btn hero-creators__btn--primary">Commencer à
+                                publier</a>
+                            <a href="pricing.html" class="hero-creators__btn hero-creators__btn--outline">Voir la
+                                tarification</a>
+                        </div>
+                    </div>
+
+                    <div class="hero-creators__visual" aria-hidden="true">
+                        <span class="hero-creators__sparkle hero-creators__sparkle--1">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 1.5l2.1 7.3L21.5 12l-7.4 3.2L12 22.5 9.9 15.2 2.5 12l7.4-3.2z" />
+                            </svg>
+                        </span>
+                        <span class="hero-creators__sparkle hero-creators__sparkle--2">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 1.5l2.1 7.3L21.5 12l-7.4 3.2L12 22.5 9.9 15.2 2.5 12l7.4-3.2z" />
+                            </svg>
+                        </span>
+                        <div class="hero-creators__panel">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 19l7-7 3 3-7 7-3-3z" />
+                                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+                                <path d="M2 2l7.586 7.586" />
+                                <circle cx="11" cy="11" r="2" />
+                            </svg>
+                        </div>
+                        <span class="hero-creators__badge">
+                            Pour les créateurs
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== WHAT YOU CAN DO ===== -->
+        <section class="section">
+            <div class="container">
+                <header class="section__header">
+                    <span class="section__eyebrow">Ce que tu peux faire</span>
+                    <h2 class="section__title">
+                        Créateur sur Chronicles : <span class="highlight">concrètement&nbsp;?</span>
+                    </h2>
+                    <p class="section__subtitle">
+                        C'est publier tes propres histoires, dessinées ou écrites, et en garder le contrôle.
+                        Voici ce que la plateforme t'offre.
+                    </p>
+                </header>
+
+                <div class="features">
+
+                    <article class="feature">
+                        <span class="feature__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                            </svg>
+                        </span>
+                        <h3 class="feature__title">Publie en BD ou en roman</h3>
+                        <p class="feature__text">
+                            Importe tes planches ou ton texte. L'interface s'adapte à ton format, sur mobile
+                            comme sur ordinateur.
+                        </p>
+                    </article>
+
+                    <article class="feature">
+                        <span class="feature__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 1v22" />
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                            </svg>
+                        </span>
+                        <h3 class="feature__title">Fixe tes prix</h3>
+                        <p class="feature__text">
+                            Au chapitre ou par abonnement mensuel, c'est toi qui choisis. Seule limite :
+                            un prix plancher fixé par la plateforme.
+                        </p>
+                    </article>
+
+                    <article class="feature">
+                        <span class="feature__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M3 17l6-6 4 4 8-8" />
+                                <path d="M14 7h7v7" />
+                            </svg>
+                        </span>
+                        <h3 class="feature__title">Construis ton audience</h3>
+                        <p class="feature__text">
+                            Chaque chapitre publié t'amène de nouveaux lecteurs, qui reviennent,
+                            te suivent et te soutiennent.
+                        </p>
+                    </article>
+
+                    <article class="feature">
+                        <span class="feature__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="2" y="6" width="20" height="12" rx="2" />
+                                <path d="M2 10h20" />
+                                <circle cx="6" cy="14" r="1" />
+                            </svg>
+                        </span>
+                        <h3 class="feature__title">Reçois tes gains localement</h3>
+                        <p class="feature__text">
+                            MVola, Orange Money ou Airtel Money. Aucun compte bancaire international
+                            requis.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== RULES ===== -->
+        <section class="section rules-section">
+            <div class="container">
+                <header class="section__header">
+                    <span class="section__eyebrow">Les règles du jeu</span>
+                    <h2 class="section__title">
+                        Ce qu'on <span class="highlight">encourage</span>, ce qu'on <span
+                            class="highlight">refuse</span>.
+                    </h2>
+                    <p class="section__subtitle">
+                        Chronicles est un espace pensé pour les créateurs. Des règles claires, pour que
+                        chacun y trouve sa place.
+                    </p>
+                </header>
+
+                <div class="rules">
+                    <span class="rules__marks" aria-hidden="true"></span>
+
+                    <div class="rules__col rules__col--accept">
+                        <h3 class="rules__heading">
+                            <span class="rules__badge" aria-hidden="true">✦</span>
+                            Ce qu'on encourage
+                        </h3>
+                        <ul class="rules__list">
+                            <li>
+                                <strong>Tous les genres.</strong> Polar, romance, science-fiction, tranche de
+                                vie, aventure : écris ce que tu veux.
+                            </li>
+                            <li>
+                                <strong>Les histoires qui parlent de Madagascar</strong>, de sa culture, de
+                                son folklore, de son quotidien. C'est le cœur de la plateforme.
+                            </li>
+                            <li>
+                                <strong>Le malgache, le français, l'anglais</strong>, ou un mélange des trois.
+                                Écris dans la langue qui te ressemble.
+                            </li>
+                            <li>
+                                <strong>Un travail original, fait main.</strong> Ton trait, ta voix, ton
+                                univers.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="rules__col rules__col--refuse">
+                        <h3 class="rules__heading">
+                            <span class="rules__badge rules__badge--refuse" aria-hidden="true">✕</span>
+                            Ce qu'on refuse
+                        </h3>
+                        <ul class="rules__list">
+                            <li>
+                                <strong>Les œuvres volées.</strong> Ni copie, ni traduction non autorisée, ni
+                                repost : tu publies uniquement ce que tu as créé.
+                            </li>
+                            <li>
+                                <strong>L'usurpation d'identité.</strong> Un pseudonyme, oui — c'est ton
+                                droit. Te faire passer pour un autre créateur ou publier en son nom, non.
+                            </li>
+                            <li>
+                                <strong>Les images générées par IA.</strong> Chronicles est un espace de
+                                création humaine : pas de planches, de couvertures ni d'illustrations
+                                produites par un modèle.
+                            </li>
+                            <li>
+                                <strong>Les contenus dangereux.</strong> Pas de haine, pas de harcèlement,
+                                pas de contenu illégal.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== WHO CAN JOIN ===== -->
+        <section class="section who">
+            <div class="container">
+                <header class="section__header">
+                    <span class="section__eyebrow">Qui peut rejoindre</span>
+                </header>
+
+                <p class="who__statement">
+                    Chronicles, c'est pour les créateurs <span class="underline">malagasy</span>.
+                </p>
+
+                <p class="who__note">
+                    Nous démarrons avec les créateurs qui vivent et travaillent à Madagascar. Quand la
+                    plateforme sera solide, nous ouvrirons à la diaspora malgache, où qu'elle soit dans
+                    le monde.
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== FOUNDING CREATORS ===== -->
+        <section class="founding">
+            <div class="founding__inner">
+                <div class="founding__text">
+                    <h2>Prêt à publier ton histoire&nbsp;?</h2>
+                    <p>
+                        Chronicles est en bêta. Les créateurs qui nous rejoignent maintenant ne font pas
+                        que publier : ils aident à décider comment la plateforme fonctionne, quelles règles
+                        tiennent et où nous allons. C'est ta plateforme autant que la nôtre.
+                    </p>
+                </div>
+                <div class="founding__cta">
+                    <a href="login.html" class="founding__btn">Rejoindre Chronicles</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer__inner">
+
+            <div class="footer__content">
+
+                <div class="footer__brand">
+                    <h3>
+                        Chronicles MG
+                        <span class="footer__badge">Bêta</span>
+                    </h3>
+                    <p>
+                        Une plateforme pour raconter, lire et soutenir les histoires malgaches.
+                        Simple, rapide et sécurisée.
+                    </p>
+                    <div class="footer__socials">
+                        <a href="#" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer__col">
+                    <h4>Produit</h4>
+                    <ul>
+                        <li><a href="home.html#how">Comment ça marche</a></li>
+                        <li><a href="pricing.html">Tarification</a></li>
+                        <li><a href="home.html">Explorer</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__col">
+                    <h4>Légal</h4>
+                    <ul>
+                        <li><a href="about.html">À propos</a></li>
+                        <li><a href="#">Conditions d'utilisation</a></li>
+                        <li><a href="#">Gestion des données</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__col">
+                    <h4>Entreprise</h4>
+                    <ul>
+                        <li><a href="#">Directives</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer__bottom">
+                <p>© 2026 Chronicles (Bêta). Tous droits réservés.</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <a href="#" class="feedback" aria-label="Donner un retour">Feedback</a>
+
+    <script>
+        (function () {
+            var openBtn = document.querySelector('.header__menu-btn');
+            var closeBtn = document.querySelector('.mobile-nav__close');
+            var panel = document.getElementById('mobile-nav');
+            if (!openBtn || !closeBtn || !panel) return;
+
+            function setOpen(open) {
+                openBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                openBtn.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+                panel.hidden = !open;
+                document.body.style.overflow = open ? 'hidden' : '';
+                if (open) {
+                    requestAnimationFrame(function () { panel.classList.add('is-open'); });
+                } else {
+                    panel.classList.remove('is-open');
+                }
+            }
+
+            openBtn.addEventListener('click', function () {
+                var isOpen = openBtn.getAttribute('aria-expanded') === 'true';
+                setOpen(!isOpen);
+            });
+
+            closeBtn.addEventListener('click', function () {
+                setOpen(false);
+                openBtn.focus();
+            });
+
+            panel.querySelectorAll('a').forEach(function (a) {
+                a.addEventListener('click', function () { setOpen(false); });
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && openBtn.getAttribute('aria-expanded') === 'true') {
+                    setOpen(false);
+                    openBtn.focus();
+                }
+            });
+
+            window.addEventListener('resize', function () {
+                if (window.innerWidth >= 800 && openBtn.getAttribute('aria-expanded') === 'true') {
+                    setOpen(false);
+                }
+            });
+        })();
+    </script>
+
+</body>
+
+</html>

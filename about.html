@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>À propos — Chronicles MG</title>
+    <meta name="description"
+        content="Chronicles MG est une plateforme numérique de lecture et de publication pour les auteurs, autrices, illustrateurs et lecteurs malagasy." />
+    <style>
+        /* ============================================================
+       TOKENS
+       ============================================================ */
+        :root {
+            --blue-600: #2563eb;
+            --blue-700: #1d4ed8;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-600: #4b5563;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --max-width: 1100px;
+            --header-height: 64px;
+
+            --ink: #15140F;
+            --panel: #FFFDF6;
+            --shadow-sm: 3px 3px 0 var(--ink);
+            --shadow-md: 6px 6px 0 var(--ink);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--header-height) + 16px);
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            color: var(--gray-800);
+            background: var(--white);
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--blue-600);
+            outline-offset: 3px;
+        }
+
+        /* ============================================================
+       HEADER
+       ============================================================ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0 1.25rem;
+            z-index: 100;
+        }
+
+        .header__left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            min-width: 0;
+        }
+
+        .header__menu-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            flex: none;
+            background: var(--panel);
+            border: 2.5px solid var(--ink);
+            border-radius: 8px;
+            box-shadow: 3px 3px 0 var(--ink);
+            color: var(--ink);
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            padding: 0;
+        }
+
+        .header__menu-btn:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0 var(--ink);
+        }
+
+        .header__menu-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 var(--ink);
+        }
+
+        .header__menu-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .header__nav {
+            display: none;
+            gap: 1.6rem;
+        }
+
+        .header__nav a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.15s;
+            padding-bottom: 4px;
+        }
+
+        .header__nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -2px;
+            height: 1.5px;
+            background: var(--blue-600);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.2s ease;
+        }
+
+        .header__nav a:hover {
+            color: var(--gray-900);
+        }
+
+        .header__nav a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .header__nav a.is-active {
+            color: var(--blue-600);
+            font-weight: 700;
+        }
+
+        .header__nav a.is-active::after {
+            transform: scaleX(1);
+            height: 2px;
+        }
+
+        .header__right {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex: none;
+            margin-left: auto;
+        }
+
+        .language-switcher {
+            display: flex;
+            align-items: center;
+            background: var(--gray-100);
+            border-radius: 999px;
+            padding: 0.4rem 0.7rem;
+            gap: 0.35rem;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+
+        .language-switcher:hover {
+            background: var(--gray-200);
+        }
+
+        .language-switcher svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--gray-800);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            pointer-events: none;
+        }
+
+        .language-switcher select {
+            background: transparent;
+            border: none;
+            padding: 0;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .header__cta {
+            background: var(--blue-600);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .header__cta:hover {
+            background: var(--blue-700);
+        }
+
+        @media (min-width: 800px) {
+            .header {
+                padding: 0 2rem;
+            }
+
+            .header__nav {
+                display: flex;
+            }
+
+            .header__menu-btn {
+                display: none;
+            }
+        }
+
+        /* ============================================================
+       MOBILE NAV
+       ============================================================ */
+        .mobile-nav {
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--white);
+            z-index: 99;
+            padding: 0.75rem 1.25rem 1.25rem;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(-8px);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: transform 0.22s ease, opacity 0.22s ease, visibility 0.22s;
+            overflow-y: auto;
+        }
+
+        .mobile-nav.is-open {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        @media (min-width: 800px) {
+            .mobile-nav {
+                display: none;
+            }
+        }
+
+        .mobile-nav__close {
+            align-self: flex-end;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            flex: none;
+            background: transparent;
+            border: none;
+            color: var(--gray-800);
+            cursor: pointer;
+            border-radius: 10px;
+            padding: 0;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+
+        .mobile-nav__close:hover,
+        .mobile-nav__close:focus-visible {
+            background: var(--gray-100);
+            color: var(--gray-900);
+        }
+
+        .mobile-nav__close svg {
+            width: 22px;
+            height: 22px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .mobile-nav__list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            margin-top: 0.5rem;
+        }
+
+        .mobile-nav__list a {
+            display: block;
+            padding: 0.95rem 0.25rem;
+            color: var(--blue-700);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            line-height: 1.4;
+            transition: color 0.15s ease, padding-left 0.2s ease;
+        }
+
+        .mobile-nav__list a:hover,
+        .mobile-nav__list a:focus-visible {
+            color: var(--blue-600);
+            padding-left: 0.5rem;
+        }
+
+        .mobile-nav__list a.is-active {
+            color: var(--blue-600);
+            font-weight: 700;
+        }
+
+        /* ============================================================
+       LAYOUT
+       ============================================================ */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        @media (min-width: 800px) {
+            .container {
+                padding: 0 2rem;
+            }
+        }
+
+        /* ============================================================
+       PAGE
+       ============================================================ */
+        .about-page {
+            padding-top: calc(var(--header-height) + 4rem);
+        }
+
+        @media (min-width: 900px) {
+            .about-page {
+                padding-top: calc(var(--header-height) + 5.5rem);
+            }
+        }
+
+        /* ============================================================
+       ROW / COLUMN SYSTEM
+       ============================================================ */
+        .row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .row:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (min-width: 800px) {
+            .row {
+                gap: 3rem;
+                margin-bottom: 4.5rem;
+            }
+        }
+
+        @media (min-width: 800px) {
+            .row--2 {
+                grid-template-columns: 1fr 1fr;
+                align-items: start;
+            }
+
+            .row--3 {
+                grid-template-columns: repeat(3, 1fr);
+                align-items: start;
+            }
+        }
+
+        /* ============================================================
+       PAGE HEAD
+       ============================================================ */
+        .page-head {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--blue-700);
+            margin-bottom: 3.5rem;
+        }
+
+        .page-head span {
+            display: inline-block;
+            width: 24px;
+            height: 2px;
+            background: var(--blue-600);
+        }
+
+        /* ============================================================
+       TYPOGRAPHY
+       ============================================================ */
+        .title-xl {
+            font-weight: 900;
+            font-size: clamp(2rem, 4.8vw, 3.15rem);
+            line-height: 1.06;
+            letter-spacing: -0.035em;
+            color: var(--ink);
+        }
+
+        .title-xl .highlight {
+            color: var(--blue-600);
+            background-image: linear-gradient(var(--gray-100), var(--gray-100));
+            background-repeat: no-repeat;
+            background-position: 0 82%;
+            background-size: 100% 0.28em;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+            padding: 0 2px;
+        }
+
+        .title-lg {
+            font-weight: 900;
+            font-size: clamp(1.5rem, 3.2vw, 2.05rem);
+            line-height: 1.18;
+            letter-spacing: -0.028em;
+            color: var(--ink);
+        }
+
+        .title-lg .highlight {
+            color: var(--blue-600);
+            background-image: linear-gradient(var(--gray-100), var(--gray-100));
+            background-repeat: no-repeat;
+            background-position: 0 82%;
+            background-size: 100% 0.28em;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+            padding: 0 2px;
+        }
+
+        .lead {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--gray-800);
+        }
+
+        .lead+.lead {
+            margin-top: 1rem;
+        }
+
+        .lead strong {
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        .lead a {
+            color: var(--blue-600);
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .lead a:hover {
+            color: var(--blue-700);
+        }
+
+        /* ============================================================
+       SECTION LABEL ROW
+       ============================================================ */
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-label__num {
+            font-size: 0.78rem;
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            color: var(--blue-600);
+            flex: none;
+        }
+
+        .section-label__text {
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--ink);
+            flex: none;
+        }
+
+        .section-label__rule {
+            flex: 1;
+            height: 1px;
+            background: var(--gray-200);
+        }
+
+        /* ============================================================
+       PRINCIPLE CARD (A / B / C)
+       ============================================================ */
+        .principle {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding-top: 1.5rem;
+        }
+
+        .principle__letter {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            background: var(--blue-600);
+            color: var(--white);
+            border: 2.5px solid var(--ink);
+            border-radius: 6px;
+            box-shadow: 3px 3px 0 var(--ink);
+            font-size: 0.9rem;
+            font-weight: 900;
+            transform: rotate(-4deg);
+            flex: none;
+            margin-bottom: 0.35rem;
+        }
+
+        .principle__title {
+            font-size: 1.05rem;
+            font-weight: 900;
+            letter-spacing: -0.01em;
+            color: var(--ink);
+            line-height: 1.3;
+        }
+
+        .principle__text {
+            font-size: 0.98rem;
+            line-height: 1.75;
+            color: var(--gray-600);
+        }
+
+        .principle__text a {
+            color: var(--blue-600);
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .principle__text a:hover {
+            color: var(--blue-700);
+        }
+
+        /* ============================================================
+       FOUNDER
+       ============================================================ */
+        .founder__portrait {
+            position: relative;
+            aspect-ratio: 3 / 4;
+            background: var(--panel);
+            border: 2.5px solid var(--ink);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1.25rem;
+            color: var(--gray-600);
+            max-width: 280px;
+        }
+
+        .founder__portrait::before {
+            content: "";
+            position: absolute;
+            inset: 10px;
+            border: 1.5px dashed var(--gray-300);
+            pointer-events: none;
+        }
+
+        .founder__portrait svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--gray-300);
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            margin-bottom: 0.75rem;
+        }
+
+        .founder__portrait-label {
+            position: relative;
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gray-600);
+        }
+
+        .founder__intro {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--ink);
+            line-height: 1.4;
+            margin-bottom: 1.15rem;
+        }
+
+        .founder__link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--blue-600);
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-size: 0.98rem;
+            margin-top: 0.5rem;
+        }
+        .founder__link-wrapper {
+            text-align: right;
+        }
+
+        .founder__link:hover {
+            color: var(--blue-700);
+        }
+
+        /* ============================================================
+       CTA WAVE — comic buttons
+       ============================================================ */
+        .founding {
+            position: relative;
+            background-color: var(--blue-600);
+            background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1.5px, transparent 1.5px);
+            background-size: 14px 14px;
+            padding: 3.5rem 0 4rem;
+            margin-top: 5rem;
+        }
+
+        .founding::before,
+        .founding::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 45px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%232563eb' d='M0,70 C240,110 480,30 720,70 C960,110 1200,30 1440,70 L1440,120 L0,120 Z'/%3E%3C/svg%3E");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            pointer-events: none;
+        }
+
+        .founding::before {
+            bottom: 100%;
+        }
+
+        .founding::after {
+            top: 100%;
+            transform: rotate(180deg);
+        }
+
+        @media (min-width: 900px) {
+            .founding {
+                padding: 4.5rem 0 5rem;
+                margin-top: 6.5rem;
+            }
+
+            .founding::before,
+            .founding::after {
+                height: 70px;
+            }
+        }
+
+        .founding__inner {
+            width: 100%;
+            padding: 0 1.25rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+            text-align: left;
+        }
+
+        @media (min-width: 800px) {
+            .founding__inner {
+                padding: 0 2rem;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .founding__inner {
+                grid-template-columns: 1fr auto;
+                gap: 3rem;
+            }
+        }
+
+        .founding__text h2 {
+            color: var(--white);
+            font-size: clamp(1.4rem, 2.8vw, 2rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 0.6rem;
+        }
+
+        .founding__text p {
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 56ch;
+        }
+
+        .founding__cta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            align-items: flex-start;
+        }
+
+        @media (min-width: 900px) {
+            .founding__cta {
+                align-items: flex-end;
+            }
+        }
+
+        .founding__btn {
+            background: var(--panel);
+            color: var(--ink);
+            border: 3px solid var(--ink);
+            box-shadow: 5px 5px 0 var(--ink);
+            padding: 0.9rem 1.6rem;
+            font-size: 0.85rem;
+            font-weight: 900;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            border-radius: 8px;
+            width: min(100%, 320px);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+
+        @media (min-width: 900px) {
+            .founding__btn {
+                width: auto;
+                min-width: 260px;
+            }
+        }
+
+        .founding__btn:hover {
+            background: var(--white);
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0 var(--ink);
+        }
+
+        .founding__btn:active {
+            transform: translate(3px, 3px);
+            box-shadow: 1px 1px 0 var(--ink);
+        }
+
+        /* ============================================================
+       FOOTER
+       ============================================================ */
+        .footer {
+            background: var(--gray-900);
+            color: #f8fafc;
+            padding: 3rem 0;
+            font-size: 0.9rem;
+        }
+
+        .footer__inner {
+            padding: 0 1.25rem;
+        }
+
+        @media (min-width: 800px) {
+            .footer__inner {
+                padding: 0 2rem;
+            }
+        }
+
+        .footer__content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            padding-bottom: 3rem;
+        }
+
+        @media (min-width: 640px) {
+            .footer__content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2.75rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .footer__content {
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+                gap: 3rem;
+            }
+        }
+
+        .footer__brand h3 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer__badge {
+            background: var(--blue-600);
+            color: var(--white);
+            font-size: 0.6rem;
+            padding: 0.15rem 0.45rem;
+            border-radius: 4px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .footer__brand p {
+            color: #94a3b8;
+            line-height: 1.65;
+            margin-bottom: 1.5rem;
+            max-width: 34ch;
+        }
+
+        .footer__socials {
+            display: flex;
+            gap: 0.6rem;
+        }
+
+        .footer__socials a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.15s;
+        }
+
+        .footer__socials a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+        }
+
+        .footer__socials svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .footer__col h4 {
+            font-size: 0.92rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            color: var(--white);
+            margin-bottom: 1.1rem;
+        }
+
+        .footer__col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .footer__col a {
+            color: #f8fafc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.15s;
+        }
+
+        .footer__col a:hover {
+            color: var(--blue-600);
+        }
+
+        .footer__bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem 0 0;
+            text-align: center;
+            font-size: 0.78rem;
+            color: #94a3b8;
+            letter-spacing: 0.03em;
+        }
+
+        /* ============================================================
+       FEEDBACK
+       ============================================================ */
+        .feedback {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            background: var(--gray-900);
+            color: var(--white);
+            padding: 0.6rem 1rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: transform 0.2s;
+            z-index: 99;
+        }
+
+        .feedback:hover {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --shadow-md: 5px 5px 0 var(--ink);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header__left">
+            <button class="header__menu-btn" type="button" aria-label="Ouvrir le menu" aria-expanded="false"
+                aria-controls="mobile-nav">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+            <nav class="header__nav" aria-label="Navigation principale">
+                <a href="home.html">Accueil</a>
+                <a href="creators.html">Créateurs</a>
+                <a href="pricing.html">Tarification</a>
+                <a href="announcement.html">Annonces</a>
+                <a href="about.html" class="is-active" aria-current="page">À propos</a>
+            </nav>
+        </div>
+        <div class="header__right">
+            <div class="language-switcher">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path
+                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                    </path>
+                </svg>
+                <select aria-label="Changer de langue">
+                    <option value="fr">FR</option>
+                    <option value="en">EN</option>
+                    <option value="mg">MG</option>
+                </select>
+            </div>
+            <a href="login.html" class="header__cta">Créer un compte</a>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Navigation mobile" hidden>
+        <button class="mobile-nav__close" type="button" aria-label="Fermer le menu">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <ul class="mobile-nav__list">
+            <li><a href="home.html">Accueil</a></li>
+            <li><a href="creators.html">Créateurs</a></li>
+            <li><a href="pricing.html">Tarification</a></li>
+            <li><a href="announcement.html">Annonces</a></li>
+            <li><a href="about.html" class="is-active" aria-current="page">À propos</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <section class="about-page">
+            <div class="container">
+
+                <!-- ===== HERO : title / description ===== -->
+                <div class="row row--2">
+                    <h1 class="title-xl">
+                        Les histoires malagasy ont un <span class="highlight">avenir à construire</span>.
+                    </h1>
+                    <div>
+                        <p class="lead">
+                            Chronicles MG est une plateforme numérique de lecture et de publication conçue
+                            pour les auteurs, autrices, illustrateurs et lecteurs qui souhaitent faire
+                            circuler davantage d'histoires liées à Madagascar.
+                        </p>
+                        <p class="lead">
+                            Le projet part d'un constat simple : créer une œuvre ne suffit pas. Il faut
+                            aussi pouvoir la publier dans un format adapté, la rendre accessible à son
+                            public, organiser sa diffusion et, lorsque c'est possible, en tirer un revenu.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ===== 01 · NOTRE RAISON D'ÊTRE ===== -->
+                <div class="section-label">
+                    <span class="section-label__num">01</span>
+                    <span class="section-label__text">Notre raison d'être</span>
+                    <span class="section-label__rule" aria-hidden="true"></span>
+                </div>
+
+                <div class="row row--2">
+                    <h2 class="title-lg">
+                        Créer est une chose. Faire circuler une œuvre en est une autre.
+                    </h2>
+                    <p class="lead">
+                        Les histoires circulent sur de nombreux supports : réseaux sociaux, blogs,
+                        plateformes de publication et formats imprimés. Cette diversité offre des
+                        possibilités, mais elle peut aussi rendre les œuvres difficiles à retrouver et à
+                        suivre dans la durée.
+                    </p>
+                </div>
+
+                <div class="row row--3">
+                    <div class="principle">
+                        <span class="principle__letter" aria-hidden="true">A</span>
+                        <h3 class="principle__title">Des œuvres que l'on peut retrouver</h3>
+                        <p class="principle__text">
+                            Un espace organisé autour des œuvres et de leur publication, pour que les
+                            lecteurs puissent découvrir des histoires et retrouver leurs chapitres au même
+                            endroit.
+                        </p>
+                    </div>
+
+                    <div class="principle">
+                        <span class="principle__letter" aria-hidden="true">B</span>
+                        <h3 class="principle__title">Des voix qui restent diverses</h3>
+                        <p class="principle__text">
+                            Les récits malagasy ne se limitent pas au folklore ni à la transmission du
+                            patrimoine. Ils peuvent aussi prendre la forme de romans contemporains, de
+                            polars, de science-fiction, de fantasy ou de bandes dessinées.
+                        </p>
+                    </div>
+
+                    <div class="principle">
+                        <span class="principle__letter" aria-hidden="true">C</span>
+                        <h3 class="principle__title">Des créateurs au centre</h3>
+                        <p class="principle__text">
+                            Publier régulièrement demande du temps, des compétences et des ressources.
+                            Chronicles intègre la monétisation dans son modèle pour rendre cette activité
+                            plus durable. Les modalités sont détaillées sur la page
+                            <a href="pricing.html">Tarification</a>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ===== 02 · LA VISION ===== -->
+                <div class="section-label">
+                    <span class="section-label__num">02</span>
+                    <span class="section-label__text">La vision</span>
+                    <span class="section-label__rule" aria-hidden="true"></span>
+                </div>
+
+                <div class="row row--2">
+                    <h2 class="title-lg">
+                        Une infrastructure indépendante, pensée pour durer.
+                    </h2>
+                    <p class="lead">
+                        Chronicles réunit plusieurs besoins dans un même espace, avec une attention
+                        particulière portée à la création originale, à la diversité linguistique et à la
+                        place des créateurs dans l'écosystème numérique malagasy.
+                        <strong>Notre objectif : faciliter la rencontre entre les œuvres, leurs lecteurs et
+                            les personnes qui les créent.</strong>
+                    </p>
+                </div>
+
+                <div class="row row--3">
+                    <div class="principle">
+                        <span class="principle__letter" aria-hidden="true">A</span>
+                        <h3 class="principle__title">Deux formats de narration</h3>
+                        <p class="principle__text">
+                            Des œuvres textuelles, comme les romans et les feuilletons, et des œuvres
+                            visuelles, comme les bandes dessinées et les séries illustrées. Chaque format
+                            conserve ses particularités, dans un même espace de lecture et de publication.
+                        </p>
+                    </div>
+
+                    <div class="principle">
+                        <span class="principle__letter" aria-hidden="true">B</span>
+                        <h3 class="principle__title">Plusieurs langues, plusieurs voix</h3>
+                        <p class="principle__text">
+                            Le malagasy, le français et l'anglais ont leur place, sans effacer la diversité
+                            des expressions régionales. À terme, nous souhaitons aussi faciliter la
+                            circulation des œuvres entre les langues. Cette ambition se distingue des
+                            fonctionnalités de traduction disponibles aujourd'hui.
+                        </p>
+                    </div>
+
+                    <div class="principle">
+                        <span class="principle__letter" aria-hidden="true">C</span>
+                        <h3 class="principle__title">Une place centrale pour les créateurs</h3>
+                        <p class="principle__text">
+                            La publication, les règles de participation et les possibilités de monétisation
+                            soutiennent la relation entre créateurs et lecteurs, tout en protégeant
+                            l'originalité des contenus et le travail artistique.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ===== 03 · LES ORIGINES ===== -->
+                <div class="section-label">
+                    <span class="section-label__num">03</span>
+                    <span class="section-label__text">Les origines</span>
+                    <span class="section-label__rule" aria-hidden="true"></span>
+                </div>
+
+                <div class="row row--2">
+                    <h2 class="title-lg">
+                        Roxane Aina, fondatrice de Chronicles MG.
+                    </h2>
+
+                    <div>
+                        <p class="lead">
+                            "J'ai lancé ce projet avec une ambition : contribuer à un environnement
+                            numérique dans lequel les histoires malagasy peuvent être publiées, découvertes
+                            et soutenues, sans que leur potentiel soit limité par leur format ou leur
+                            langue.
+                        </p>
+                        <p class="lead">
+                            Chronicles est actuellement un projet indépendant en phase bêta. Je prends en
+                            charge son développement et son évolution, et les retours des premiers
+                            utilisateurs contribuent à identifier les problèmes à résoudre et les priorités
+                            à traiter. Cette phase est aussi une période d'apprentissage : vérifier ce qui
+                            fonctionne, comprendre les besoins réels des lecteurs et des créateurs, puis
+                            améliorer la plateforme en conséquence."
+                        </p>
+                        <p class="lead">
+                            <div class="founder__link-wrapper">
+                                <a href="https://roxaina.me" class="founder__link" target="_blank" rel="noopener">
+                                    roxaina.me (Portfolio)
+                                    <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                                        <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2"
+                                            fill="none" />
+                                        <polyline points="12 5 19 12 12 19" stroke="currentColor" stroke-width="2"
+                                            fill="none" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ===== 04 · LA SUITE ===== -->
+                <div class="section-label">
+                    <span class="section-label__num">04</span>
+                    <span class="section-label__text">La suite</span>
+                    <span class="section-label__rule" aria-hidden="true"></span>
+                </div>
+
+                <div class="row row--2">
+                    <h2 class="title-lg">
+                        Un projet qui se construit avec ses premiers membres.
+                    </h2>
+                    <div>
+                        <p class="lead">
+                            Chronicles est en bêta. Certaines fonctionnalités, procédures et orientations
+                            peuvent encore évoluer, à partir de l'utilisation réelle. Pour le moment, la
+                            plateforme est réservée aux créateurs qui vivent et travaillent à Madagascar.
+                            L'ouverture à la diaspora malgache fait partie des perspectives envisagées,
+                            mais dépendra de l'évolution du projet.
+                        </p>
+                        <p class="lead">
+                            Notre priorité est de consolider les fondations, d'améliorer l'expérience de
+                            lecture et de publication, et de construire progressivement un espace utile aux
+                            créateurs comme à leur public. Une plateforme de création évolue grâce aux
+                            œuvres qui y sont publiées, aux lecteurs qui les découvrent et aux retours de
+                            celles et ceux qui l'utilisent.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== CTA WAVE — comic buttons ===== -->
+        <section class="founding">
+            <div class="founding__inner">
+                <div class="founding__text">
+                    <h2>Construisons la suite ensemble.</h2>
+                    <p>
+                        Chronicles est encore en construction. C'est aussi l'occasion de contribuer à ce
+                        qu'il deviendra.
+                    </p>
+                </div>
+                <div class="founding__cta">
+                    <a href="login.html" class="founding__btn">Rejoindre Chronicles</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer__inner">
+
+            <div class="footer__content">
+
+                <div class="footer__brand">
+                    <h3>
+                        Chronicles MG
+                        <span class="footer__badge">Bêta</span>
+                    </h3>
+                    <p>
+                        Une plateforme pour raconter, lire et soutenir les histoires malgaches.
+                        Simple, rapide et sécurisée.
+                    </p>
+                    <div class="footer__socials">
+                        <a href="#" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer__col">
+                    <h4>Produit</h4>
+                    <ul>
+                        <li><a href="home.html#how">Comment ça marche</a></li>
+                        <li><a href="pricing.html">Tarification</a></li>
+                        <li><a href="home.html">Explorer</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__col">
+                    <h4>Légal</h4>
+                    <ul>
+                        <li><a href="about.html">À propos</a></li>
+                        <li><a href="#">Conditions d'utilisation</a></li>
+                        <li><a href="#">Gestion des données</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__col">
+                    <h4>Entreprise</h4>
+                    <ul>
+                        <li><a href="#">Directives</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer__bottom">
+                <p>© 2026 Chronicles (Bêta). Tous droits réservés.</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <a href="#" class="feedback" aria-label="Donner un retour">Feedback</a>
+
+    <script>
+        (function () {
+            var openBtn = document.querySelector('.header__menu-btn');
+            var closeBtn = document.querySelector('.mobile-nav__close');
+            var panel = document.getElementById('mobile-nav');
+            if (!openBtn || !closeBtn || !panel) return;
+
+            function setOpen(open) {
+                openBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                openBtn.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+                panel.hidden = !open;
+                document.body.style.overflow = open ? 'hidden' : '';
+                if (open) {
+                    requestAnimationFrame(function () { panel.classList.add('is-open'); });
+                } else {
+                    panel.classList.remove('is-open');
+                }
+            }
+
+            openBtn.addEventListener('click', function () {
+                var isOpen = openBtn.getAttribute('aria-expanded') === 'true';
+                setOpen(!isOpen);
+            });
+
+            closeBtn.addEventListener('click', function () {
+                setOpen(false);
+                openBtn.focus();
+            });
+
+            panel.querySelectorAll('a').forEach(function (a) {
+                a.addEventListener('click', function () { setOpen(false); });
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && openBtn.getAttribute('aria-expanded') === 'true') {
+                    setOpen(false);
+                    openBtn.focus();
+                }
+            });
+
+            window.addEventListener('resize', function () {
+                if (window.innerWidth >= 800 && openBtn.getAttribute('aria-expanded') === 'true') {
+                    setOpen(false);
+                }
+            });
+        })();
+    </script>
+
+</body>
+
+</html>
