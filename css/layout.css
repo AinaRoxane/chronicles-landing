@@ -1,0 +1,15 @@
+        /* ============================================================
+       LAYOUT
+       ============================================================ */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        @media (min-width: 800px) {
+            .container {
+                padding: 0 2rem;
+            }
+        }
+

@@ -1,0 +1,37 @@
+        /* ============================================================
+       TOKENS
+       ============================================================ */
+        :root {
+            --blue-600: #2563eb;
+            --blue-700: #1d4ed8;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-600: #4b5563;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --radius: 12px;
+            --max-width: 1100px;
+            --header-height: 64px;
+            --gutter: 14px;
+
+            --ink: #15140F;
+            --panel: #FFFDF6;
+            --line: 3px;
+            --shadow-sm: 3px 3px 0 var(--ink);
+            --shadow-md: 6px 6px 0 var(--ink);
+            --shadow-lg: 9px 9px 0 var(--ink);
+        }
+
+        /* ============================================================
+       SMALL-PHONE TOKENS
+       ============================================================ */
+        @media (max-width: 480px) {
+            :root {
+                --shadow-sm: 3px 3px 0 var(--ink);
+                --shadow-md: 5px 5px 0 var(--ink);
+                --shadow-lg: 7px 7px 0 var(--ink);
+            }
+        }

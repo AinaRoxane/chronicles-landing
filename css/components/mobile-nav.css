@@ -1,0 +1,160 @@
+        /* ============================================================
+       MOBILE NAV — full-screen, clean text links, bottom action bar
+       ============================================================ */
+        .mobile-nav {
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--white);
+            z-index: 99;
+            padding: 0.75rem 1.25rem 1.25rem;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(-8px);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: transform 0.22s ease, opacity 0.22s ease, visibility 0.22s;
+            overflow-y: auto;
+        }
+
+        .mobile-nav.is-open {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        @media (min-width: 800px) {
+            .mobile-nav {
+                display: none;
+            }
+        }
+
+        /* --- close button (X) --- */
+        .mobile-nav__close {
+            align-self: flex-end;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            flex: none;
+            background: transparent;
+            border: none;
+            color: var(--gray-800);
+            cursor: pointer;
+            border-radius: 10px;
+            padding: 0;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+
+        .mobile-nav__close:hover,
+        .mobile-nav__close:focus-visible {
+            background: var(--gray-100);
+            color: var(--gray-900);
+        }
+
+        .mobile-nav__close svg {
+            width: 22px;
+            height: 22px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* --- link list --- */
+        .mobile-nav__list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            margin-top: 0.5rem;
+        }
+
+        .mobile-nav__list li {
+            border-bottom: 1px solid transparent;
+        }
+
+        .mobile-nav__list a {
+            display: block;
+            padding: 0.95rem 0.25rem;
+            color: var(--blue-700);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            line-height: 1.4;
+            transition: color 0.15s ease, padding-left 0.2s ease;
+        }
+
+        .mobile-nav__list a:hover,
+        .mobile-nav__list a:focus-visible {
+            color: var(--blue-600);
+            padding-left: 0.5rem;
+        }
+
+        .mobile-nav__list a.is-active {
+            color: var(--blue-600);
+            font-weight: 700;
+        }
+
+        /* --- bottom action bar --- */
+        .mobile-nav__footer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--gray-200);
+            margin-top: auto;
+        }
+
+        .mobile-nav__btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            padding: 0.85rem 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .mobile-nav__btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            flex: none;
+        }
+
+        .mobile-nav__btn--outline {
+            background: var(--white);
+            color: var(--blue-700);
+            border: 1.5px solid var(--blue-600);
+        }
+
+        .mobile-nav__btn--outline:hover {
+            background: var(--gray-50);
+        }
+
+        .mobile-nav__btn--primary {
+            background: var(--blue-600);
+            color: var(--white);
+            border: 1.5px solid var(--blue-600);
+        }
+
+        .mobile-nav__btn--primary:hover {
+            background: var(--blue-700);
+            border-color: var(--blue-700);
+        }
+

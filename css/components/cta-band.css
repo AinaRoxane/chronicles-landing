@@ -1,0 +1,144 @@
+/* ============================================================
+   CTA BAND — blue wave band above the footer
+   Shared by index, creators, pricing and about pages.
+   ============================================================ */
+.cta-band {
+    position: relative;
+    background-color: var(--blue-600);
+    background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1.5px, transparent 1.5px);
+    background-size: 14px 14px;
+    border: none;
+    padding: 3.5rem 0 4rem;
+    margin-top: 5rem;
+}
+
+.cta-band::before,
+.cta-band::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 45px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%232563eb' d='M0,70 C240,110 480,30 720,70 C960,110 1200,30 1440,70 L1440,120 L0,120 Z'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    pointer-events: none;
+}
+
+.cta-band::before {
+    bottom: 100%;
+}
+
+.cta-band::after {
+    top: 100%;
+    transform: rotate(180deg);
+}
+
+@media (min-width: 900px) {
+    .cta-band {
+        padding: 4.5rem 0 5rem;
+        margin-top: 6.5rem;
+    }
+
+    .cta-band::before,
+    .cta-band::after {
+        height: 70px;
+    }
+}
+
+.cta-band__inner {
+    width: 100%;
+    padding: 0 1.25rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+    text-align: left;
+}
+
+@media (min-width: 800px) {
+    .cta-band__inner {
+        padding: 0 2rem;
+    }
+}
+
+@media (min-width: 900px) {
+    .cta-band__inner {
+        grid-template-columns: 1fr auto;
+        gap: 3rem;
+    }
+}
+
+.cta-band__text h2,
+.cta-band__text h3 {
+    color: var(--white);
+    font-size: clamp(1.4rem, 2.8vw, 2rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+}
+
+.cta-band__text p {
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 56ch;
+}
+
+.cta-band__cta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    align-items: flex-start;
+}
+
+@media (min-width: 900px) {
+    .cta-band__cta {
+        align-items: flex-end;
+    }
+}
+
+.cta-band__btn {
+    background: var(--panel);
+    color: var(--ink);
+    border: 3px solid var(--ink);
+    box-shadow: 5px 5px 0 var(--ink);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 8px;
+    width: min(100%, 320px);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+@media (min-width: 900px) {
+    .cta-band__btn {
+        width: auto;
+        min-width: 260px;
+    }
+}
+
+.cta-band__btn:hover {
+    background: var(--white);
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 var(--ink);
+}
+
+.cta-band__btn:active {
+    transform: translate(3px, 3px);
+    box-shadow: 1px 1px 0 var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cta-band__btn {
+        transition: none;
+    }
+}
