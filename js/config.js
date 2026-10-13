@@ -14,10 +14,13 @@ window.SITE_CONFIG = (function () {
 
     /* External destinations (empty string = keep the markup href) */
     var LINKS = {
-        feedback: "",
         facebook: "",
         tiktok: ""
     };
+
+    /* Feedback destination — the [data-link="feedback"] anchors become mailto:
+       Change this value to point the feedback pill to another inbox. */
+    var FEEDBACK_EMAIL = "aiina.arimanana@gmail.com";
 
     function normalizeLocale(value) {
         if (!value) return null;
@@ -55,6 +58,10 @@ window.SITE_CONFIG = (function () {
 
         links: LINKS,
 
+        get feedbackEmail() {
+            return FEEDBACK_EMAIL;
+        },
+
         route: function (name) {
             var template = config.routes[name];
             if (!template) return null;
@@ -64,6 +71,12 @@ window.SITE_CONFIG = (function () {
         },
 
         link: function (name) {
+            if (name === "feedback") {
+                return FEEDBACK_EMAIL
+                    ? "mailto:" + FEEDBACK_EMAIL +
+                        "?subject=" + encodeURIComponent("Feedback — Chronicles MG")
+                    : null;
+            }
             return LINKS[name] || null;
         },
 
