@@ -16,7 +16,7 @@ window.SITE_CONFIG = (function () {
     var LINKS = {
         feedback: "",
         facebook: "",
-        linkedin: ""
+        tiktok: ""
     };
 
     function normalizeLocale(value) {
