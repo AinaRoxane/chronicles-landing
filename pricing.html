@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tarification — Chronicles MG</title>
+    <title>Tarification | Chronicles MG</title>
     <meta name="description"
-        content="Tous les montants sont en ariary (Ar). Chronicles donne aux créateurs un contrôle sur le prix par chapitre — avec un plancher." />
+        content="Tous les montants sont en ariary (Ar). Découvrez nos modèles d'accès : horaire, standard, Fast Pass et abonnement." />
     <link rel="stylesheet" href="css/tokens.css" />
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/layout.css" />
@@ -24,39 +24,11 @@
             padding-top: calc(var(--header-height) + 4rem);
         }
 
-        .pricing-hero {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2.5rem;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        @media (min-width: 900px) {
-            .pricing-hero {
-                grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-                gap: 4rem;
-            }
-        }
-
         .pricing-intro {
             max-width: 780px;
+            margin-bottom: 3rem;
         }
 
-        .pricing-intro__eyebrow {
-            display: inline-block;
-            font-size: 0.78rem;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            color: var(--blue-700);
-            background: var(--gray-100);
-            border: 1px solid var(--gray-200);
-            padding: 0.3rem 0.75rem;
-            border-radius: 999px;
-            margin-bottom: 1.25rem;
-        }
-
-        /* Pricing hero title — hero-scale typography */
         .pricing-intro__title {
             font-weight: 900;
             font-size: clamp(2.15rem, 5.5vw, 3.5rem);
@@ -88,58 +60,8 @@
             font-weight: 800;
         }
 
-        /* ---------- illustration placeholder ---------- */
-        .illu {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem 1.5rem;
-            background: var(--gray-50);
-            border: 1.5px dashed var(--gray-300);
-            border-radius: 14px;
-            color: var(--gray-600);
-            min-height: 240px;
-        }
-
-        .illu--hero {
-            min-height: 320px;
-            height: 100%;
-        }
-
-        .illu__icon {
-            color: var(--gray-300);
-            margin-bottom: 0.85rem;
-        }
-
-        .illu__icon svg {
-            width: 42px;
-            height: 42px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 1.5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .illu__label {
-            font-size: 0.68rem;
-            font-weight: 800;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--gray-600);
-        }
-
-        .illu__hint {
-            font-size: 0.88rem;
-            color: var(--gray-600);
-            font-style: italic;
-            margin-top: 0.4rem;
-        }
-
         /* ============================================================
-       METRICS BAND — 4 monetization types
+       METRICS BAND 4 monetization types
        ============================================================ */
         .metrics-band {
             position: relative;
@@ -420,103 +342,6 @@
             white-space: nowrap;
         }
 
-        /* ============================================================
-       DONATIONS — comic metric card
-       ============================================================ */
-        .donation-wrap {
-            max-width: 780px;
-            margin: 3.5rem auto;
-        }
-
-        .donation-card {
-            position: relative;
-            max-width: 780px;
-            padding: 1.5rem 1.6rem 1.5rem;
-            background: var(--panel);
-            border: 2.5px solid var(--ink);
-            box-shadow: var(--shadow-md);
-            display: flex;
-            gap: 1.25rem;
-            align-items: flex-start;
-            transform: rotate(-0.6deg);
-            transition:
-                transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
-                box-shadow 0.28s ease;
-        }
-
-        .donation-card:hover,
-        .donation-card:focus-within {
-            transform: rotate(0deg) translateY(-6px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .donation-card__icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 56px;
-            height: 56px;
-            flex: none;
-            background: var(--blue-600);
-            color: var(--white);
-            border: 3px solid var(--ink);
-            border-radius: 12px;
-            box-shadow: 3px 3px 0 var(--ink);
-            transform: rotate(-6deg);
-        }
-
-        .donation-card__icon svg {
-            width: 26px;
-            height: 26px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .donation-card__content {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .donation-card__title {
-            font-size: 0.72rem;
-            font-weight: 800;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--blue-700);
-            margin-bottom: 0.35rem;
-        }
-
-        .donation-card__amount {
-            font-size: 1.35rem;
-            font-weight: 900;
-            letter-spacing: -0.02em;
-            color: var(--ink);
-            line-height: 1.15;
-            margin-bottom: 0.5rem;
-        }
-
-        .donation-card__text {
-            font-size: 0.95rem;
-            line-height: 1.65;
-            color: var(--gray-800);
-        }
-
-        .donation-card__text strong {
-            color: var(--ink);
-            font-weight: 800;
-        }
-
-        @media (max-width: 480px) {
-            .donation-card {
-                transform: rotate(0deg);
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-
         /* ---------- mobile table scroll ---------- */
         @media (max-width: 700px) {
             .table-wrap {
@@ -531,6 +356,21 @@
             .pricing-section__title {
                 font-size: 1.2rem;
             }
+        }
+    
+        /* HERO — centered like Accueil */
+        .pricing-intro {
+            max-width: 780px;
+            margin: 0 auto 3rem;
+            text-align: center;
+        }
+        .pricing-intro__title {
+            max-width: 18ch;
+            margin: 0 auto 1.25rem;
+        }
+        .pricing-intro__lead {
+            max-width: 640px;
+            margin: 0 auto;
         }
 
     </style>
@@ -598,40 +438,35 @@
         <section class="pricing-page">
             <div class="container">
 
-                <!-- ===== HERO : intro + illustration ===== -->
-                <div class="pricing-hero">
-
-                    <div class="pricing-intro">
-                        <h1 class="pricing-intro__title">
-                            Tu fixes tes prix, <span class="highlight">avec un plancher</span>.
-                        </h1>
-                        <p class="pricing-intro__lead">
-                            Tous les montants sont en <strong>Ariary (Ar/MGA)</strong>. Les créateurs fixent
-                            librement leurs prix par chapitre et pour les bibles, dans le respect d'un
-                            <strong>prix plancher</strong>. Les tarifs des abonnements sont fixes.
-                        </p>
-                    </div>
-
-                    <figure class="illu illu--hero" aria-label="Emplacement illustration">
-                        <span class="illu__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24">
-                                <rect x="3" y="3" width="18" height="18" rx="2" />
-                                <circle cx="8.5" cy="8.5" r="1.5" />
-                                <path d="M21 15l-5-5L5 21" />
-                            </svg>
-                        </span>
-                        <span class="illu__label">Illustration</span>
-                        <span class="illu__hint">Un auteur qui compte ses ventes</span>
-                    </figure>
-
+                <!-- ===== HERO ===== -->
+                <div class="pricing-intro">
+                    <h1 class="pricing-intro__title">
+                        Soutien les auteurs, <span class="highlight">à ta manière</span>.
+                    </h1>
+                    <p class="pricing-intro__lead">
+                        Tous les montants sont en <strong>Ariary (Ar/MGA)</strong>. Que tu souhaites lire à l'heure,
+                        acheter un chapitre ou t'abonner, il y a une formule adaptée.
+                        <br><br>
+                    </p>
                 </div>
 
             </div>
 
-            <!-- ===== METRICS BAND — 4 monetization types ===== -->
-            <section class="metrics-band" aria-label="Les quatre façons de monétiser ton œuvre">
+            <!-- ===== METRICS BAND ===== -->
+            <section class="metrics-band" aria-label="Les quatre façons d'accéder aux œuvres">
                 <div class="container">
                     <div class="metrics-row">
+
+                        <div class="metric-col">
+                            <div class="metric__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                            </div>
+                            <div class="metric__value">700 Ar</div>
+                            <div class="metric__label">Accès horaire</div>
+                        </div>
 
                         <div class="metric-col">
                             <div class="metric__icon" aria-hidden="true">
@@ -640,8 +475,8 @@
                                     <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
                                 </svg>
                             </div>
-                            <div class="metric__value">400 Ar+</div>
-                            <div class="metric__label">Ventes au chapitre</div>
+                            <div class="metric__value">300 Ar+</div>
+                            <div class="metric__label">Prix standard</div>
                         </div>
 
                         <div class="metric-col">
@@ -653,32 +488,24 @@
                                     <line x1="3" y1="10" x2="21" y2="10" />
                                 </svg>
                             </div>
-                            <div class="metric__value">5 000 Ar+</div>
-                            <div class="metric__label">Abonnements mensuels</div>
+                            <div class="metric__value">5 000 Ar</div>
+                            <div class="metric__label">Abonnement</div>
                         </div>
 
                         <div class="metric-col">
                             <div class="metric__icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24">
-                                    <path d="M12 19l7-7 3 3-7 7-3-3z" />
-                                    <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
-                                    <path d="M2 2l7.586 7.586" />
-                                    <circle cx="11" cy="11" r="2" />
-                                </svg>
-                            </div>
-                            <div class="metric__value">2 000 Ar+</div>
-                            <div class="metric__label">Bibles d'univers</div>
-                        </div>
-
-                        <div class="metric-col">
-                            <div class="metric__icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                                     <path
-                                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                                        stroke="none" fill="currentColor" opacity="0.2"></path>
                                 </svg>
                             </div>
-                            <div class="metric__value">95 %</div>
-                            <div class="metric__label">Sur les dons</div>
+                            <div class="metric__value">+2 Amis</div>
+                            <div class="metric__label">Partage d'accès</div>
                         </div>
 
                     </div>
@@ -687,13 +514,13 @@
 
             <div class="container">
 
-                <!-- ===== 1. CHAPTER SALES ===== -->
+                <!-- ===== 1. HOURLY ACCESS ===== -->
                 <section class="pricing-section">
                     <header class="pricing-section__header">
-                        <h2 class="pricing-section__title">Vends au chapitre</h2>
+                        <h2 class="pricing-section__title">Accès horaire</h2>
                         <p class="pricing-section__subtitle">
-                            Tu publies chapitre par chapitre, le lecteur débloque au fur et à mesure.
-                            Le prix dépend de la longueur (romans) ou du nombre d'images (BD).
+                            Tu veux lire un livre spécifique rapidement ? Loue l'accès à l'œuvre complète d'un auteur
+                            pour une durée d'une heure. Pas de téléchargement, lecture en streaming uniquement.
                         </p>
                     </header>
 
@@ -702,73 +529,106 @@
                             <thead>
                                 <tr>
                                     <th>Format</th>
-                                    <th>Prix lecteur (minimum)</th>
-                                    <th>Ton pourcentage</th>
-                                    <th>Tu reçois</th>
+                                    <th>Prix lecteur</th>
+                                    <th>Durée</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="pricing-table__group">
-                                    <th colspan="4">Romans</th>
-                                </tr>
                                 <tr>
-                                    <td class="pricing-table__format">Chapitre (1k – 1,9k mots)</td>
-                                    <td class="pricing-table__price">400 <small>Ar</small></td>
-                                    <td class="pricing-table__pct">70 %</td>
-                                    <td class="pricing-table__earn">280 <small>Ar</small></td>
-                                </tr>
-                                <tr>
-                                    <td class="pricing-table__format">Chapitre (2k – 4,9k mots)</td>
-                                    <td class="pricing-table__price">600 <small>Ar</small></td>
-                                    <td class="pricing-table__pct">70 %</td>
-                                    <td class="pricing-table__earn">420 <small>Ar</small></td>
-                                </tr>
-                                <tr>
-                                    <td class="pricing-table__format">Chapitre (5k+ mots)</td>
-                                    <td class="pricing-table__price">1 000 <small>Ar</small></td>
-                                    <td class="pricing-table__pct">70 %</td>
-                                    <td class="pricing-table__earn">700 <small>Ar</small></td>
-                                </tr>
-
-                                <tr class="pricing-table__group">
-                                    <th colspan="4">BD</th>
-                                </tr>
-                                <tr>
-                                    <td class="pricing-table__format">Chapitre (2 – 5 images)</td>
-                                    <td class="pricing-table__price">800 <small>Ar</small></td>
-                                    <td class="pricing-table__pct">70 %</td>
-                                    <td class="pricing-table__earn">560 <small>Ar</small></td>
-                                </tr>
-                                <tr>
-                                    <td class="pricing-table__format">Chapitre (6 – 10 images)</td>
-                                    <td class="pricing-table__price">1 200 <small>Ar</small></td>
-                                    <td class="pricing-table__pct">70 %</td>
-                                    <td class="pricing-table__earn">840 <small>Ar</small></td>
-                                </tr>
-                                <tr>
-                                    <td class="pricing-table__format">Chapitre (11 – 20 images)</td>
-                                    <td class="pricing-table__price">2 000 <small>Ar</small></td>
-                                    <td class="pricing-table__pct">70 %</td>
-                                    <td class="pricing-table__earn">1 400 <small>Ar</small></td>
-                                </tr>
-                                <tr>
-                                    <td class="pricing-table__format">Chapitre (20+ images)</td>
-                                    <td class="pricing-table__price">3 000 <small>Ar</small></td>
-                                    <td class="pricing-table__pct">70 %</td>
-                                    <td class="pricing-table__earn">2 100 <small>Ar</small></td>
+                                    <td class="pricing-table__format">Accès complet à l'œuvre d'un auteur</td>
+                                    <td class="pricing-table__price">700 <small>Ar</small></td>
+                                    <td style="text-align: center;">1 heure</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </section>
 
-                <!-- ===== 2. SUBSCRIPTIONS ===== -->
+                <!-- ===== 2. STANDARD PRICING ===== -->
+                <section class="pricing-section">
+                    <header class="pricing-section__header">
+                        <h2 class="pricing-section__title">Prix standard</h2>
+                        <p class="pricing-section__subtitle">
+                            Achète un chapitre pour le débloquer définitivement. Tu peux le télécharger pour le lire
+                            hors-ligne, et le partager avec 2 amis (qui ne pourront pas le partager à leur tour).
+                        </p>
+                    </header>
+
+                    <div class="table-wrap">
+                        <table class="pricing-table">
+                            <thead>
+                                <tr>
+                                    <th>Format</th>
+                                    <th>Prix lecteur</th>
+                                    <th>Ton pourcentage</th>
+                                    <th>Tu reçois</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="pricing-table__format">Chapitre Roman (800 – 2000 mots)</td>
+                                    <td class="pricing-table__price">300 <small>Ar</small></td>
+                                    <td class="pricing-table__pct">70 %</td>
+                                    <td class="pricing-table__earn">210 <small>Ar</small></td>
+                                </tr>
+                                <tr>
+                                    <td class="pricing-table__format">Chapitre BD (1 – 20 images)</td>
+                                    <td class="pricing-table__price">500 <small>Ar</small></td>
+                                    <td class="pricing-table__pct">70 %</td>
+                                    <td class="pricing-table__earn">350 <small>Ar</small></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- ===== 3. FAST PASS ===== -->
+                <section class="pricing-section">
+                    <header class="pricing-section__header">
+                        <h2 class="pricing-section__title">Fast Pass</h2>
+                        <p class="pricing-section__subtitle">
+                            Disponible 36 heures après la sortie du chapitre. Le créateur fixe son prix (avec un
+                            plancher de 300 Ar pour les romans et 500 Ar pour les BD, et un plafond de 5000 Ar). Après
+                            cette période, le prix revient automatiquement au tarif standard. <br>
+                            <em>Comme pour le prix standard, tu peux partager l'accès avec 2 amis.</em>
+                        </p>
+                    </header>
+
+                    <div class="table-wrap">
+                        <table class="pricing-table">
+                            <thead>
+                                <tr>
+                                    <th>Format</th>
+                                    <th>Prix lecteur (plancher)</th>
+                                    <th>Prix lecteur (plafond)</th>
+                                    <th>Ton pourcentage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="pricing-table__format">Chapitre Roman (Fast Pass)</td>
+                                    <td class="pricing-table__price">300 <small>Ar</small></td>
+                                    <td class="pricing-table__price">5 000 <small>Ar</small></td>
+                                    <td class="pricing-table__pct">70 %</td>
+                                </tr>
+                                <tr>
+                                    <td class="pricing-table__format">Chapitre BD (Fast Pass)</td>
+                                    <td class="pricing-table__price">500 <small>Ar</small></td>
+                                    <td class="pricing-table__price">5 000 <small>Ar</small></td>
+                                    <td class="pricing-table__pct">70 %</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- ===== 4. SUBSCRIPTIONS ===== -->
                 <section class="pricing-section">
                     <header class="pricing-section__header">
                         <h2 class="pricing-section__title">Abonnements mensuels</h2>
                         <p class="pricing-section__subtitle">
-                            Un lecteur s'abonne à ton œuvre pour un mois, et accède à tout ce que tu as
-                            publié — plus ce que tu publieras. Revenu régulier, public fidèle.
+                            Un lecteur s'abonne à l'œuvre d'un auteur pour un mois, et accède à tout ce qu'il a publié
+                            et ce qu'il publiera. Revenu régulier, public fidèle.
                         </p>
                     </header>
 
@@ -812,75 +672,10 @@
                     </div>
                 </section>
 
-                <!-- ===== 3. BIBLES ===== -->
-                <section class="pricing-section">
-                    <header class="pricing-section__header">
-                        <h2 class="pricing-section__title">Bibles d'univers</h2>
-                        <p class="pricing-section__subtitle">
-                            Un accès en profondeur à ton univers — personnages, relations, lore. Pour
-                            les fans qui veulent tout savoir.
-                        </p>
-                    </header>
-
-                    <div class="table-wrap">
-                        <table class="pricing-table">
-                            <thead>
-                                <tr>
-                                    <th>Format</th>
-                                    <th>Prix lecteur (minimum)</th>
-                                    <th>Ton pourcentage</th>
-                                    <th>Tu reçois</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="pricing-table__format">Déblocage d'un personnage (art + fiche)</td>
-                                    <td class="pricing-table__price">2 000 <small>Ar</small></td>
-                                    <td class="pricing-table__pct">70 %</td>
-                                    <td class="pricing-table__earn">1 400 <small>Ar</small></td>
-                                </tr>
-                                <tr>
-                                    <td class="pricing-table__format">Arbre des relations (art + extraits)</td>
-                                    <td class="pricing-table__price">5 000 <small>Ar</small></td>
-                                    <td class="pricing-table__pct">70 %</td>
-                                    <td class="pricing-table__earn">3 500 <small>Ar</small></td>
-                                </tr>
-                                <tr>
-                                    <td class="pricing-table__format">Codex complet de l'univers</td>
-                                    <td class="pricing-table__price">20 000 <small>Ar</small></td>
-                                    <td class="pricing-table__pct">70 %</td>
-                                    <td class="pricing-table__earn">14 000 <small>Ar</small></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-
-                <!-- ===== DONATIONS — comic metric card ===== -->
-                <div class="donation-wrap">
-                    <article class="donation-card">
-                        <span class="donation-card__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24">
-                                <path
-                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                            </svg>
-                        </span>
-                        <div class="donation-card__content">
-                            <div class="donation-card__title">Dons directs</div>
-                            <div class="donation-card__amount">à partir de 500 Ar</div>
-                            <p class="donation-card__text">
-                                La plateforme ne prélève que <strong>5 %</strong> — sur un don de 500 Ar,
-                                tu reçois 475 Ar. C'est la façon la plus directe pour ton public de te
-                                soutenir.
-                            </p>
-                        </div>
-                    </article>
-                </div>
-
             </div>
         </section>
 
-        <!-- ===== FOUNDING / CTA — aligned with footer ===== -->
+        <!-- ===== FOUNDING / CTA aligned with footer ===== -->
         <section class="cta-band">
             <div class="cta-band__inner">
                 <div class="cta-band__text">
@@ -944,15 +739,6 @@
                         <li><a href="#">Gestion des données</a></li>
                     </ul>
                 </div>
-
-                <div class="footer__col">
-                    <h4>Entreprise</h4>
-                    <ul>
-                        <li><a href="#">Directives</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-
             </div>
 
             <div class="footer__bottom">

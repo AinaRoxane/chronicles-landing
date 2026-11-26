@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Devenir créateur — Chronicles MG</title>
+    <title>Devenir créateur | Chronicles MG</title>
     <meta name="description"
-        content="Publie tes BD ou tes romans sur Chronicles. Réservé aux créateurs malagasy. Tu fixes tes prix, tu gardes la majeure partie de chaque vente." />
+        content="Publie tes BD ou tes romans sur Chronicles. Tu gardes 70 % sur les ventes à l'unité et les abonnements. Bêta réservée aux créateurs basés à Madagascar." />
     <link rel="stylesheet" href="css/tokens.css" />
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/layout.css" />
@@ -18,195 +18,17 @@
     <link rel="stylesheet" href="css/components/feedback.css" />
     <style>
         /* ============================================================
-       HERO — split layout, content left, illustration right
+       HERO
        ============================================================ */
         .hero-creators {
-            position: relative;
-            padding: calc(var(--header-height) + 3.5rem) 0 4rem;
+            padding: calc(var(--header-height) + 4rem) 0 3rem;
+            text-align: center;
         }
 
-        @media (min-width: 900px) {
-            .hero-creators {
-                padding: calc(var(--header-height) + 5rem) 0 6rem;
-            }
-        }
-
-        .hero-creators__inner {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        @media (min-width: 900px) {
-            .hero-creators__inner {
-                grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-                gap: 5rem;
-                align-items: start;
-            }
-        }
-
-        /* --- visual column --- */
-        .hero-creators__visual {
-            position: relative;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 1.5rem;
-            min-height: 360px;
-            padding: 1rem 0 0;
-        }
-
-        @media (min-width: 900px) {
-            .hero-creators__visual {
-                display: flex;
-            }
-        }
-
-        /* Soft decorative backdrop — grounds the panel */
-        .hero-creators__visual::before {
-            content: "";
-            position: absolute;
-            top: 150px;
-            left: 50%;
-            width: 340px;
-            height: 340px;
-            transform: translate(-50%, -50%);
-            background: var(--blue-600);
-            opacity: 0.06;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .hero-creators__panel {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 250px;
-            height: 250px;
-            background: var(--panel);
-            border: 4px solid var(--ink);
-            box-shadow: 8px 8px 0 var(--ink);
-            border-radius: 12px;
-            color: var(--blue-600);
-            transform: rotate(-4deg);
-            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-                box-shadow 0.35s ease;
-        }
-
-        .hero-creators__panel:hover {
-            transform: rotate(-1deg) scale(1.03);
-            box-shadow: 12px 12px 0 var(--ink);
-        }
-
-        .hero-creators__panel svg {
-            width: 120px;
-            height: 120px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 1.4;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        /* --- comic ink badge under the panel --- */
-        .hero-creators__badge {
-            position: relative;
-            z-index: 1;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.55rem 1.1rem;
-            background: var(--panel);
-            color: var(--blue-600);
-            border: 2.5px solid var(--ink);
-            border-radius: 8px;
-            box-shadow: 4px 4px 0 var(--ink);
-            font-size: 0.72rem;
-            font-weight: 900;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            white-space: nowrap;
-            transform: rotate(-2deg);
-            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-                box-shadow 0.25s ease;
-        }
-
-        .hero-creators__badge:hover {
-            transform: rotate(0deg) translateY(-2px);
-            box-shadow: 6px 6px 0 var(--ink);
-        }
-
-        .hero-creators__badge svg {
-            width: 14px;
-            height: 14px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2.5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            flex: none;
-        }
-
-        /* --- sparkles, framing the panel --- */
-        .hero-creators__sparkle {
-            position: absolute;
-            color: var(--blue-600);
-            pointer-events: none;
-            z-index: 2;
-            animation: hero-sparkle 3.2s ease-in-out infinite;
-        }
-
-        .hero-creators__sparkle svg {
-            width: 100%;
-            height: 100%;
-            fill: currentColor;
-        }
-
-        .hero-creators__sparkle--1 {
-            top: 4%;
-            right: 10%;
-            width: 32px;
-            height: 32px;
-            animation-delay: 0s;
-        }
-
-        .hero-creators__sparkle--2 {
-            top: 60%;
-            left: 6%;
-            width: 22px;
-            height: 22px;
-            animation-delay: 1.3s;
-        }
-
-        @keyframes hero-sparkle {
-
-            0%,
-            100% {
-                opacity: 0.35;
-                transform: scale(0.85) rotate(-12deg);
-            }
-
-            50% {
-                opacity: 1;
-                transform: scale(1.12) rotate(14deg);
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .hero-creators__sparkle {
-                animation: none;
-                opacity: 0.65;
-            }
-        }
-
-        /* --- content column --- */
         .hero-creators__content {
-            text-align: left;
+            max-width: 760px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .hero-creators__title {
@@ -215,7 +37,8 @@
             line-height: 1.08;
             letter-spacing: -0.038em;
             color: var(--gray-900);
-            margin: 0 0 1.5rem;
+            margin: 0 auto 1.25rem;
+            max-width: 25ch;
         }
 
         .hero-creators__title .highlight {
@@ -233,7 +56,7 @@
             font-size: 1.05rem;
             line-height: 1.7;
             color: var(--gray-600);
-            max-width: 52ch;
+            max-width: 640px;
             margin: 0 auto 2.25rem;
         }
 
@@ -241,7 +64,10 @@
             display: flex;
             flex-direction: column;
             gap: 0.85rem;
-            align-items: flex-start;
+            align-items: center;
+            justify-content: center;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         @media (min-width: 700px) {
@@ -250,6 +76,7 @@
                 flex-wrap: nowrap;
                 align-items: center;
                 gap: 0.75rem;
+                justify-content: center;
             }
         }
 
@@ -296,62 +123,53 @@
         }
 
         /* ============================================================
-       SECTION HEADERS
+       BLUE WAVE BAND
        ============================================================ */
-        .section {
+        .wave-band {
+            position: relative;
+            background-color: var(--blue-600);
+            background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1.5px, transparent 1.5px);
+            background-size: 14px 14px;
             padding: 4rem 0;
+            margin: 3rem 0 5rem;
         }
 
-        .section__header {
-            text-align: center;
-            margin-bottom: 3.5rem;
-        }
-
-        .section__eyebrow {
-            display: inline-block;
-            font-size: 0.78rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--blue-700);
-            background: var(--gray-100);
-            border: 1px solid var(--gray-200);
-            padding: 0.3rem 0.75rem;
-            border-radius: 999px;
-            margin-bottom: 1.1rem;
-        }
-
-        .section__title {
-            font-weight: 900;
-            font-size: clamp(1.75rem, 4vw, 2.5rem);
-            letter-spacing: -0.025em;
-            line-height: 1.15;
-            color: var(--ink);
-            margin: 0 auto 0.85rem;
-            max-width: 24ch;
-        }
-
-        .section__title .highlight {
-            color: var(--blue-600);
-            background-image: linear-gradient(var(--gray-100), var(--gray-100));
+        .wave-band::before,
+        .wave-band::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 45px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%232563eb' d='M0,70 C240,110 480,30 720,70 C960,110 1200,30 1440,70 L1440,120 L0,120 Z'/%3E%3C/svg%3E");
+            background-size: 100% 100%;
             background-repeat: no-repeat;
-            background-position: 0 82%;
-            background-size: 100% 0.3em;
-            box-decoration-break: clone;
-            -webkit-box-decoration-break: clone;
-            padding: 0 2px;
+            pointer-events: none;
         }
 
-        .section__subtitle {
-            color: var(--gray-600);
-            font-size: 1rem;
-            max-width: 60ch;
-            margin: 0 auto;
-            line-height: 1.65;
+        .wave-band::before {
+            bottom: 100%;
+        }
+
+        .wave-band::after {
+            top: 100%;
+            transform: rotate(180deg);
+        }
+
+        @media (min-width: 900px) {
+            .wave-band {
+                padding: 5rem 0;
+                margin: 4rem 0 6rem;
+            }
+
+            .wave-band::before,
+            .wave-band::after {
+                height: 70px;
+            }
         }
 
         /* ============================================================
-       WHAT YOU CAN DO
+       FEATURES (Cards inside wave)
        ============================================================ */
         .features {
             display: grid;
@@ -395,35 +213,6 @@
             box-shadow: var(--shadow-lg);
         }
 
-        .feature__icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 52px;
-            height: 52px;
-            margin-bottom: 1rem;
-            background: var(--blue-600);
-            color: var(--white);
-            border: 3px solid var(--ink);
-            border-radius: 10px;
-            box-shadow: 3px 3px 0 var(--ink);
-            transform: rotate(-4deg);
-        }
-
-        .feature:nth-child(even) .feature__icon {
-            transform: rotate(4deg);
-        }
-
-        .feature__icon svg {
-            width: 24px;
-            height: 24px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
         .feature__title {
             font-size: 1rem;
             font-weight: 900;
@@ -455,6 +244,7 @@
             background-color: var(--white);
             background-image: radial-gradient(rgba(21, 20, 15, 0.055) 1.5px, transparent 1.5px);
             background-size: 18px 18px;
+            padding: 5rem 0;
         }
 
         .rules {
@@ -463,7 +253,6 @@
             padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
             max-width: 960px;
             margin: 0 auto;
-            box-shadow: 8px 8px 0 var(--ink);
             display: grid;
             grid-template-columns: 1fr;
             gap: 2.5rem;
@@ -474,46 +263,6 @@
                 grid-template-columns: 1fr 1fr;
                 gap: 3rem;
             }
-        }
-
-        .rules::before,
-        .rules::after,
-        .rules__marks::before,
-        .rules__marks::after {
-            content: "";
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border: 4px solid var(--ink);
-            pointer-events: none;
-        }
-
-        .rules::before {
-            top: -4px;
-            left: -4px;
-            border-right: none;
-            border-bottom: none;
-        }
-
-        .rules::after {
-            top: -4px;
-            right: -4px;
-            border-left: none;
-            border-bottom: none;
-        }
-
-        .rules__marks::before {
-            bottom: -4px;
-            left: -4px;
-            border-right: none;
-            border-top: none;
-        }
-
-        .rules__marks::after {
-            bottom: -4px;
-            right: -4px;
-            border-left: none;
-            border-top: none;
         }
 
         .rules__col {
@@ -592,28 +341,30 @@
         }
 
         /* ============================================================
-       WHO
+       WHO CAN JOIN
        ============================================================ */
         .who {
             position: relative;
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .who__header {
             text-align: center;
+            max-width: 640px;
+            margin: 0 auto 3rem;
         }
 
-        .who .section__header {
-            margin-bottom: 1.25rem;
-        }
-
-        .who__statement {
+        .who__title {
             font-weight: 900;
-            font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
             line-height: 1.2;
             letter-spacing: -0.025em;
             color: var(--ink);
-            max-width: 26ch;
-            margin: 0 auto 1.5rem;
+            margin-bottom: 1rem;
         }
 
-        .who__statement .underline {
+        .who__title .underline {
             color: var(--blue-600);
             background-image: linear-gradient(var(--gray-100), var(--gray-100));
             background-repeat: no-repeat;
@@ -624,12 +375,165 @@
             padding: 0 2px;
         }
 
-        .who__note {
-            color: var(--gray-600);
-            font-size: 1rem;
-            max-width: 60ch;
-            margin: 0 auto;
+        .who__lead {
+            font-size: 1.02rem;
             line-height: 1.7;
+            color: var(--gray-600);
+        }
+
+        .who__lead strong {
+            color: var(--ink);
+            font-weight: 800;
+        }
+
+        /* ---------- two-card grid ---------- */
+        .who__grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 720px) {
+            .who__grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .who-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 1.75rem 1.6rem 1.6rem;
+            background: var(--white);
+            border: 2.5px solid var(--ink);
+            box-shadow: 5px 5px 0 var(--ink);
+            transition:
+                transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.25s ease;
+        }
+
+        .who-card:hover,
+        .who-card:focus-within {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0 var(--ink);
+        }
+
+        .who-card__head {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .who-card__icon {
+            flex: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            border: 2.5px solid var(--ink);
+            border-radius: 10px;
+            background: var(--panel);
+            box-shadow: 3px 3px 0 var(--ink);
+            color: var(--blue-600);
+            transform: rotate(-4deg);
+        }
+
+        .who-card--creator .who-card__icon {
+            color: var(--blue-700);
+            transform: rotate(4deg);
+        }
+
+        .who-card__icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .who-card__label {
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gray-600);
+        }
+
+        .who-card__headline {
+            font-weight: 900;
+            font-size: 1.35rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+            margin: 0 0 0.6rem;
+        }
+
+        .who-card__note {
+            color: var(--gray-800);
+            font-size: 0.95rem;
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        .who-card__tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            align-self: flex-start;
+            margin-top: 1.25rem;
+            padding: 0.4rem 0.75rem;
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            letter-spacing: 0.01em;
+        }
+
+        .who-card__tag-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--blue-600);
+            flex: none;
+        }
+
+        .who-card--creator .who-card__tag-dot {
+            background: var(--blue-700);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .who-card {
+                transition: none;
+            }
+
+            .who-card:hover,
+            .who-card:focus-within {
+                transform: none;
+                box-shadow: 5px 5px 0 var(--ink);
+            }
+        }
+
+        .section__eyebrow {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--blue-700);
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+            margin-bottom: 1.1rem;
         }
 
     </style>
@@ -697,147 +601,70 @@
         <!-- ===== HERO ===== -->
         <section class="hero-creators">
             <div class="container">
-                <div class="hero-creators__inner">
-
-                    <div class="hero-creators__content">
-                        <h1 class="hero-creators__title">
-                            Publie tes histoires, <span class="highlight">à ta façon</span>.
-                        </h1>
-                        <p class="hero-creators__subtitle">
-                            BD ou roman, au chapitre ou par abonnement. Tu fixes tes prix, tu gardes la
-                            majorité des revenus, et Chronicles s'occupe du reste.
-                        </p>
-                        <div class="hero-creators__actions">
-                            <a href="login.html" data-route="login" class="hero-creators__btn hero-creators__btn--primary">Commencer à
-                                publier</a>
-                            <a href="pricing.html" class="hero-creators__btn hero-creators__btn--outline">Voir la
-                                tarification</a>
-                        </div>
+                <div class="hero-creators__content">
+                    <h1 class="hero-creators__title">
+                        Créateur sur Chronicles : <span class="highlight">concrètement&nbsp;?</span>
+                    </h1>
+                    <p class="hero-creators__subtitle">
+                        C'est publier tes propres histoires, dessinées ou écrites, et en garder le contrôle. Voici ce que la plateforme t'offre.
+                    </p>
+                    <div class="hero-creators__actions">
+                        <a href="login.html" data-route="login" class="hero-creators__btn hero-creators__btn--primary">Commencer à publier</a>
+                        <a href="pricing.html" class="hero-creators__btn hero-creators__btn--outline">Voir la tarification</a>
                     </div>
-
-                    <div class="hero-creators__visual" aria-hidden="true">
-                        <span class="hero-creators__sparkle hero-creators__sparkle--1">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 1.5l2.1 7.3L21.5 12l-7.4 3.2L12 22.5 9.9 15.2 2.5 12l7.4-3.2z" />
-                            </svg>
-                        </span>
-                        <span class="hero-creators__sparkle hero-creators__sparkle--2">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 1.5l2.1 7.3L21.5 12l-7.4 3.2L12 22.5 9.9 15.2 2.5 12l7.4-3.2z" />
-                            </svg>
-                        </span>
-                        <div class="hero-creators__panel">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 19l7-7 3 3-7 7-3-3z" />
-                                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
-                                <path d="M2 2l7.586 7.586" />
-                                <circle cx="11" cy="11" r="2" />
-                            </svg>
-                        </div>
-                        <span class="hero-creators__badge">
-                            Pour les créateurs
-                        </span>
-                    </div>
-
                 </div>
             </div>
         </section>
 
-        <!-- ===== WHAT YOU CAN DO ===== -->
-        <section class="section">
+        <!-- ===== BLUE WAVE WITH CARDS ===== -->
+        <section class="wave-band">
             <div class="container">
-                <header class="section__header">
-                    <span class="section__eyebrow">Ce que tu peux faire</span>
-                    <h2 class="section__title">
-                        Créateur sur Chronicles : <span class="highlight">concrètement&nbsp;?</span>
-                    </h2>
-                    <p class="section__subtitle">
-                        C'est publier tes propres histoires, dessinées ou écrites, et en garder le contrôle.
-                        Voici ce que la plateforme t'offre.
-                    </p>
-                </header>
-
                 <div class="features">
-
                     <article class="feature">
-                        <span class="feature__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-                            </svg>
-                        </span>
                         <h3 class="feature__title">Publie en BD ou en roman</h3>
                         <p class="feature__text">
-                            Importe tes planches ou ton texte. L'interface s'adapte à ton format, sur mobile
-                            comme sur ordinateur.
+                            Importe tes planches ou ton texte. L'interface s'adapte à ton format, sur mobile comme sur ordinateur.
                         </p>
                     </article>
 
                     <article class="feature">
-                        <span class="feature__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 1v22" />
-                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                            </svg>
-                        </span>
                         <h3 class="feature__title">Fixe tes prix</h3>
                         <p class="feature__text">
-                            Au chapitre ou par abonnement mensuel, c'est toi qui choisis. Seule limite :
-                            un prix plancher fixé par la plateforme.
+                            Les chapitres ont un prix standard. Mais pendant 36 heures après publication, c'est toi qui fixes le prix du Fast Pass.
                         </p>
                     </article>
 
                     <article class="feature">
-                        <span class="feature__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M3 17l6-6 4 4 8-8" />
-                                <path d="M14 7h7v7" />
-                            </svg>
-                        </span>
                         <h3 class="feature__title">Construis ton audience</h3>
                         <p class="feature__text">
-                            Chaque chapitre publié t'amène de nouveaux lecteurs, qui reviennent,
-                            te suivent et te soutiennent.
+                            Chaque chapitre publié t'amène de nouveaux lecteurs, qui reviennent, te suivent et te soutiennent.
                         </p>
                     </article>
 
                     <article class="feature">
-                        <span class="feature__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24">
-                                <rect x="2" y="6" width="20" height="12" rx="2" />
-                                <path d="M2 10h20" />
-                                <circle cx="6" cy="14" r="1" />
-                            </svg>
-                        </span>
                         <h3 class="feature__title">Reçois tes gains localement</h3>
                         <p class="feature__text">
-                            MVola, Orange Money ou Airtel Money. Aucun compte bancaire international
-                            requis.
+                            MVola, Orange Money ou Airtel Money. Aucun compte bancaire international requis.
                         </p>
                     </article>
-
                 </div>
             </div>
         </section>
 
         <!-- ===== RULES ===== -->
-        <section class="section rules-section">
+        <section class="rules-section">
             <div class="container">
-                <header class="section__header">
+                <header class="section__header" style="text-align: center; margin-bottom: 3rem;">
                     <span class="section__eyebrow">Les règles du jeu</span>
-                    <h2 class="section__title">
-                        Ce qu'on <span class="highlight">encourage</span>, ce qu'on <span
-                            class="highlight">refuse</span>.
+                    <h2 style="font-weight: 900; font-size: clamp(1.75rem, 4vw, 2.5rem); color: var(--ink); margin-bottom: 0.85rem;">
+                        Ce qu'on <span style="color: var(--blue-600);">encourage</span>, ce qu'on <span style="color: var(--blue-600);">refuse</span>.
                     </h2>
-                    <p class="section__subtitle">
-                        Chronicles est un espace pensé pour les créateurs. Des règles claires, pour que
-                        chacun y trouve sa place.
+                    <p style="color: var(--gray-600); max-width: 60ch; margin: 0 auto;">
+                        Chronicles est un espace pensé pour les créateurs. Des règles claires, pour que chacun y trouve sa place.
                     </p>
                 </header>
 
                 <div class="rules">
-                    <span class="rules__marks" aria-hidden="true"></span>
-
                     <div class="rules__col rules__col--accept">
                         <h3 class="rules__heading">
                             <span class="rules__badge" aria-hidden="true">✦</span>
@@ -845,20 +672,16 @@
                         </h3>
                         <ul class="rules__list">
                             <li>
-                                <strong>Tous les genres.</strong> Polar, romance, science-fiction, tranche de
-                                vie, aventure : écris ce que tu veux.
+                                <strong>Tous les genres.</strong> Polar, romance, science-fiction, tranche de vie, aventure : écris ce que tu veux.
                             </li>
                             <li>
-                                <strong>Les histoires qui parlent de Madagascar</strong>, de sa culture, de
-                                son folklore, de son quotidien. C'est le cœur de la plateforme.
+                                <strong>Les histoires qui parlent de Madagascar</strong>, de sa culture, de son folklore, de son quotidien. C'est le cœur de la plateforme.
                             </li>
                             <li>
-                                <strong>Le malgache, le français, l'anglais</strong>, ou un mélange des trois.
-                                Écris dans la langue qui te ressemble.
+                                <strong>Le malgache, le français, l'anglais</strong>, ou un mélange des trois. Écris dans la langue qui te ressemble.
                             </li>
                             <li>
-                                <strong>Un travail original, fait main.</strong> Ton trait, ta voix, ton
-                                univers.
+                                <strong>Un travail original, fait main.</strong> Ton trait, ta voix, ton univers.
                             </li>
                         </ul>
                     </div>
@@ -870,21 +693,16 @@
                         </h3>
                         <ul class="rules__list">
                             <li>
-                                <strong>Les œuvres volées.</strong> Ni copie, ni traduction non autorisée, ni
-                                repost : tu publies uniquement ce que tu as créé.
+                                <strong>Les œuvres volées.</strong> Ni copie, ni traduction non autorisée, ni repost : tu publies uniquement ce que tu as créé.
                             </li>
                             <li>
-                                <strong>L'usurpation d'identité.</strong> Un pseudonyme, oui — c'est ton
-                                droit. Te faire passer pour un autre créateur ou publier en son nom, non.
+                                <strong>L'usurpation d'identité.</strong> Un pseudonyme, oui — c'est ton droit. Te faire passer pour un autre créateur ou publier en son nom, non.
                             </li>
                             <li>
-                                <strong>Les images générées par IA.</strong> Chronicles est un espace de
-                                création humaine : pas de planches, de couvertures ni d'illustrations
-                                produites par un modèle.
+                                <strong>Les images générées par IA.</strong> Chronicles est un espace de création humaine : pas de planches, de couvertures ni d'illustrations produites par un modèle.
                             </li>
                             <li>
-                                <strong>Les contenus dangereux.</strong> Pas de haine, pas de harcèlement,
-                                pas de contenu illégal.
+                                <strong>Les contenus dangereux.</strong> Pas de haine, pas de harcèlement, pas de contenu illégal.
                             </li>
                         </ul>
                     </div>
@@ -893,21 +711,43 @@
         </section>
 
         <!-- ===== WHO CAN JOIN ===== -->
-        <section class="section who">
+        <section class="who">
             <div class="container">
-                <header class="section__header">
+                <header class="who__header">
                     <span class="section__eyebrow">Qui peut rejoindre</span>
+                    <h2 class="who__title">
+                        Chronicles démarre avec les <span class="underline">créateurs malagasy</span>.
+                    </h2>
+                    <p class="who__lead">
+                        Les lecteurs nous rejoignent depuis <strong>le monde entier</strong>.
+                    </p>
                 </header>
 
-                <p class="who__statement">
-                    Chronicles, c'est pour les créateurs <span class="underline">malagasy</span>.
-                </p>
+                <div class="who__grid">
 
-                <p class="who__note">
-                    Nous démarrons avec les créateurs qui vivent et travaillent à Madagascar. Quand la
-                    plateforme sera solide, nous ouvrirons à la diaspora malgache, où qu'elle soit dans
-                    le monde.
-                </p>
+                    <!-- Reader card -->
+                    <article class="who-card who-card--reader">
+                        <header class="who-card__head">
+                            <span class="who-card__label">Lecteurs</span>
+                        </header>
+                        <h3 class="who-card__headline">Partout dans le monde</h3>
+                        <p class="who-card__note">
+                            D'où que vous soyez, découvrez les voix de Madagascar — et soutenez-les directement.
+                        </p>
+                    </article>
+
+                    <!-- Creator card -->
+                    <article class="who-card who-card--creator">
+                        <header class="who-card__head">
+                            <span class="who-card__label">Créateurs</span>
+                        </header>
+                        <h3 class="who-card__headline">Basés à Madagascar</h3>
+                        <p class="who-card__note">
+                            Pour commencer, la plateforme est ouverte aux personnes qui vivent et travaillent à Madagascar.
+                        </p>
+                    </article>
+
+                </div>
             </div>
         </section>
 
@@ -917,9 +757,7 @@
                 <div class="cta-band__text">
                     <h2>Prêt à publier ton histoire&nbsp;?</h2>
                     <p>
-                        Chronicles est en bêta. Les créateurs qui nous rejoignent maintenant ne font pas
-                        que publier : ils aident à décider comment la plateforme fonctionne, quelles règles
-                        tiennent et où nous allons. C'est ta plateforme autant que la nôtre.
+                        Chronicles est en bêta. Les créateurs qui nous rejoignent maintenant ne font pas que publier : ils aident à décider comment la plateforme fonctionne, quelles règles tiennent et où nous allons. C'est ta plateforme autant que la nôtre.
                     </p>
                 </div>
                 <div class="cta-band__cta">
@@ -932,17 +770,14 @@
 
     <footer class="footer">
         <div class="footer__inner">
-
             <div class="footer__content">
-
                 <div class="footer__brand">
                     <h3>
                         Chronicles MG
                         <span class="footer__badge">Bêta</span>
                     </h3>
                     <p>
-                        Une plateforme pour raconter, lire et soutenir les histoires malgaches.
-                        Simple, rapide et sécurisée.
+                        Une plateforme pour raconter, lire et soutenir les histoires malgaches. Simple, rapide et sécurisée.
                     </p>
                     <div class="footer__socials">
                         <a href="#" data-link="tiktok" aria-label="TikTok">
@@ -976,30 +811,18 @@
                         <li><a href="#">Gestion des données</a></li>
                     </ul>
                 </div>
-
-                <div class="footer__col">
-                    <h4>Entreprise</h4>
-                    <ul>
-                        <li><a href="#">Directives</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-
             </div>
 
             <div class="footer__bottom">
                 <p>© 2026 Chronicles (Bêta). Tous droits réservés.</p>
             </div>
-
         </div>
     </footer>
 
     <a href="#" data-link="feedback" class="feedback" aria-label="Donner un retour">Feedback</a>
 
-
     <script src="js/config.js"></script>
     <script src="js/main.js"></script>
-
 </body>
 
 </html>

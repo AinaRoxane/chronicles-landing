@@ -34,23 +34,11 @@
             height: 40px;
             flex: none;
             background: var(--panel);
-            border: 2.5px solid var(--ink);
-            border-radius: 8px;
-            box-shadow: 3px 3px 0 var(--ink);
+            border: 2.5px solid var(--panel);
             color: var(--ink);
             cursor: pointer;
             transition: transform 0.15s ease, box-shadow 0.15s ease;
             padding: 0;
-        }
-
-        .header__menu-btn:hover {
-            transform: translate(-1px, -1px);
-            box-shadow: 4px 4px 0 var(--ink);
-        }
-
-        .header__menu-btn:active {
-            transform: translate(2px, 2px);
-            box-shadow: 1px 1px 0 var(--ink);
         }
 
         .header__menu-btn svg {

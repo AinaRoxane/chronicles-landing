@@ -20,7 +20,7 @@ window.SITE_CONFIG = (function () {
 
     /* Feedback destination — the [data-link="feedback"] anchors become mailto:
        Change this value to point the feedback pill to another inbox. */
-    var FEEDBACK_EMAIL = "aiina.arimanana@gmail.com";
+    var FEEDBACK_EMAIL = "hello@roxaina.me";
 
     function normalizeLocale(value) {
         if (!value) return null;
