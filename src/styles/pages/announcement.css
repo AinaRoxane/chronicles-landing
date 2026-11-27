@@ -1,0 +1,119 @@
+        /* ============================================================
+       ANNOUNCEMENTS PAGE
+       ============================================================ */
+        .announce {
+            position: relative;
+            padding-top: calc(var(--header-height) + 4rem);
+            padding-bottom: 1rem;
+        }
+
+        @media (min-width: 900px) {
+            .announce {
+                padding-top: calc(var(--header-height) + 5.5rem);
+            }
+        }
+
+        .announce__grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        @media (min-width: 900px) {
+            .announce__grid {
+                grid-template-columns: 1.05fr 0.95fr;
+                gap: 3.5rem;
+            }
+        }
+
+        .announce__eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--blue-700);
+            margin-bottom: 1.25rem;
+        }
+
+        .announce__eyebrow span {
+            display: inline-block;
+            width: 24px;
+            height: 2px;
+            background: var(--blue-600);
+        }
+
+        .announce__title {
+            font-weight: 900;
+            font-size: clamp(2rem, 4.8vw, 3.15rem);
+            line-height: 1.06;
+            letter-spacing: -0.035em;
+            color: var(--ink);
+            margin-bottom: 1rem;
+        }
+
+        .announce__title .highlight {
+            color: var(--blue-600);
+            background-image: linear-gradient(var(--gray-100), var(--gray-100));
+            background-repeat: no-repeat;
+            background-position: 0 82%;
+            background-size: 100% 0.28em;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+            padding: 0 2px;
+        }
+
+        .announce__lead {
+            font-size: 1.05rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+            max-width: 54ch;
+        }
+
+        .announce__lead + .announce__lead {
+            margin-top: 1rem;
+        }
+
+        /* --- Poster : comic panel frame --- */
+        .announce__poster {
+            position: relative;
+            max-width: 520px;
+            margin: 0 auto;
+            background: var(--panel);
+            border: 3px solid var(--ink);
+            box-shadow: var(--shadow-lg);
+            border-radius: 12px;
+        }
+
+        @media (min-width: 900px) {
+            .announce__poster {
+                margin: 0 0 0 auto;
+            }
+        }
+
+        .announce__poster img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 9px;
+        }
+
+        .announce__badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            z-index: 1;
+            background: var(--blue-600);
+            color: var(--white);
+            font-size: 0.7rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.45rem 0.9rem;
+            border-radius: 999px;
+            border: 2.5px solid var(--ink);
+            box-shadow: var(--shadow-sm);
+        }
