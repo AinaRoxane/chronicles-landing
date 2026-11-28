@@ -7,11 +7,11 @@ import { CtaBand } from "@/components/sections/cta-band";
 import { MetricsBand } from "@/components/sections/metrics-band";
 import {
   BookIcon,
-  FeedIcon,
   GlobeIcon,
   HeartIcon,
   LayersIcon,
   LinkIcon,
+  MessageIcon,
   PenIcon,
   SparkleIcon,
   UserPlusIcon,
@@ -92,74 +92,135 @@ export default async function HomePage() {
       {/* ===== MISSION ===== */}
       <section id="mission" className="mission">
         <div className="container">
-          <article className="mission__panel">
-            <span className="mission__marks" aria-hidden="true"></span>
-            <span className="mission__eyebrow">{t("missionEyebrow")}</span>
-            <h2 className="mission__title">
-              {t("missionTitleLine1")}
-              <br />
-              {t("missionTitleLine2")}
-            </h2>
-            <div className="mission__body">
-              <p>{t("missionBody1")}</p>
-              <p>{t("missionBody2")}</p>
-              <p>{t("missionBody3")}</p>
+          <div className="mission__header">
+            <span className="eyebrow">{t("missionEyebrow")}</span>
+          </div>
+
+          <div className="mission__row">
+            <div className="mission__illustration" aria-hidden="true">
+              <span className="mission__sparkle mission__sparkle--1">
+                <SparkleIcon />
+              </span>
+              <span className="mission__sparkle mission__sparkle--2">
+                <SparkleIcon />
+              </span>
+
+              <div className="mission__tile mission__tile--reader">
+                <BookIcon />
+                <span className="mission__tile-lines">
+                  <span className="mission__tile-line mission__tile-line--wide" />
+                  <span className="mission__tile-line mission__tile-line--narrow" />
+                </span>
+              </div>
+
+              <div className="mission__tile mission__tile--creator">
+                <PenIcon />
+                <span className="mission__tile-lines">
+                  <span className="mission__tile-line mission__tile-line--wide" />
+                  <span className="mission__tile-line mission__tile-line--narrow" />
+                </span>
+              </div>
             </div>
-          </article>
+
+            <div className="mission__content">
+              <h2 className="mission__title">
+                {t("missionTitleLine1")}
+                <br />
+                {t("missionTitleLine2")}
+              </h2>
+              <div className="mission__body">
+                <p>{t("missionBody1")}</p>
+                <p>{t("missionBody2")}</p>
+                <p>{t("missionBody3")}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* ===== COMMUNITY ===== */}
       <section id="communaute" className="community">
         <div className="container">
-          <header className="community__header">
+          <div className="community__badge-row">
             <span className="eyebrow">{t("communityEyebrow")}</span>
-            <h2 className="section-title">
-              {t.rich("communityTitle", { hl: highlight })}
-            </h2>
-            <p className="community__subtitle">{t("communitySubtitle")}</p>
-          </header>
+          </div>
 
-          <div className="community__grid">
-            <article className="community-card">
-              <span className="community-card__icon" aria-hidden="true">
-                <FeedIcon />
-              </span>
-              <h3 className="community-card__title">
-                {t("communityFeedTitle")}
-              </h3>
-              <p className="community-card__text">{t("communityFeedText")}</p>
-            </article>
+          <div className="community__row">
+            <div className="community__content">
+              <h2 className="community__title">
+                {t.rich("communityTitle", { hl: highlight })}
+              </h2>
+              <p className="community__intro">{t("communityIntro")}</p>
 
-            <article className="community-card">
-              <span className="community-card__icon" aria-hidden="true">
-                <HeartIcon />
-              </span>
-              <h3 className="community-card__title">
-                {t("communityReactTitle")}
-              </h3>
-              <p className="community-card__text">{t("communityReactText")}</p>
-            </article>
+              <div className="community__item">
+                <h3 className="community__item-title">
+                  {t("communityDiscoverTitle")}
+                </h3>
+                <p className="community__item-text">
+                  {t("communityDiscoverText")}
+                </p>
+              </div>
 
-            <article className="community-card">
-              <span className="community-card__icon" aria-hidden="true">
-                <LinkIcon />
-              </span>
-              <h3 className="community-card__title">
-                {t("communityShareTitle")}
-              </h3>
-              <p className="community-card__text">{t("communityShareText")}</p>
-            </article>
+              <div className="community__item">
+                <h3 className="community__item-title">
+                  {t("communityExchangeTitle")}
+                </h3>
+                <p className="community__item-text">
+                  {t("communityExchangeText")}
+                </p>
+              </div>
 
-            <article className="community-card">
-              <span className="community-card__icon" aria-hidden="true">
-                <UserPlusIcon />
-              </span>
-              <h3 className="community-card__title">
-                {t("communityFollowTitle")}
-              </h3>
-              <p className="community-card__text">{t("communityFollowText")}</p>
-            </article>
+              <div className="community__item">
+                <h3 className="community__item-title">
+                  {t("communityShareTitle")}
+                </h3>
+                <p className="community__item-text">
+                  {t("communityShareText")}
+                </p>
+              </div>
+
+              <div className="community__item">
+                <h3 className="community__item-title">
+                  {t("communityStayTitle")}
+                </h3>
+                <p className="community__item-text">
+                  {t("communityStayText")}
+                </p>
+              </div>
+            </div>
+
+            <div className="community__illustration" aria-hidden="true">
+              <article className="post-mock">
+                <header className="post-mock__head">
+                  <span className="post-mock__avatar" />
+                  <span className="post-mock__meta">
+                    <span className="post-mock__name" />
+                    <span className="post-mock__time" />
+                  </span>
+                  <span className="post-mock__follow">
+                    <UserPlusIcon />
+                  </span>
+                </header>
+
+                <div className="post-mock__body">
+                  <span className="post-mock__line" />
+                  <span className="post-mock__line" />
+                  <span className="post-mock__line post-mock__line--short" />
+                </div>
+
+                <footer className="post-mock__actions">
+                  <span className="post-mock__action post-mock__action--active">
+                    <HeartIcon />
+                  </span>
+                  <span className="post-mock__action">
+                    <MessageIcon />
+                  </span>
+                  <span className="post-mock__action">
+                    <LinkIcon />
+                  </span>
+                </footer>
+              </article>
+            </div>
           </div>
         </div>
       </section>
@@ -173,85 +234,77 @@ export default async function HomePage() {
             </h2>
           </header>
 
-          <div className="how__grid">
-            <div className="how__center-line" aria-hidden="true"></div>
+          <div className="how-cards">
+            <article className="how-card">
+              <header className="how-card__head">
+                <span className="how-card__icon" aria-hidden="true">
+                  <BookIcon />
+                </span>
+                <span className="how-card__badge">{t("readersGroup")}</span>
+              </header>
 
-            <div
-              className="how__blue-block how__blue-block--left"
-              aria-hidden="true"
-            >
-              <BookIcon />
-            </div>
+              <ol className="how-steps">
+                <li className="how-step">
+                  <span className="how-step__num">1</span>
+                  <div>
+                    <h3 className="how-step__title">{t("reader1Title")}</h3>
+                    <p className="how-step__text">{t("reader1Text")}</p>
+                  </div>
+                </li>
+                <li className="how-step">
+                  <span className="how-step__num">2</span>
+                  <div>
+                    <h3 className="how-step__title">{t("reader2Title")}</h3>
+                    <p className="how-step__text">{t("reader2Text")}</p>
+                  </div>
+                </li>
+                <li className="how-step">
+                  <span className="how-step__num">3</span>
+                  <div>
+                    <h3 className="how-step__title">{t("reader3Title")}</h3>
+                    <p className="how-step__text">{t("reader3Text")}</p>
+                  </div>
+                </li>
+              </ol>
+            </article>
 
-            <div
-              className="how__blue-block how__blue-block--right"
-              aria-hidden="true"
-            >
-              <PenIcon />
-            </div>
+            <article className="how-card">
+              <header className="how-card__head">
+                <span className="how-card__icon" aria-hidden="true">
+                  <PenIcon />
+                </span>
+                <span className="how-card__badge">{t("creatorsGroup")}</span>
+              </header>
 
-            <div className="how__group how__group--reader" aria-hidden="true">
-              <BookIcon />
-              <span>{t("readersGroup")}</span>
-            </div>
-
-            <div className="how__step how__step--reader-1">
-              <span className="step-num-mobile">1</span>
-              <h4 className="step__title">{t("reader1Title")}</h4>
-              <p className="step__text">{t("reader1Text")}</p>
-            </div>
-
-            <div className="step-num step-num--1" aria-label="Étape 1">
-              1
-            </div>
-
-            <div className="how__step how__step--creator-1">
-              <span className="step-num-mobile">1</span>
-              <h4 className="step__title">{t("creator1Title")}</h4>
-              <p className="step__text">{t("creator1Text")}</p>
-            </div>
-
-            <div className="how__step how__step--reader-2">
-              <span className="step-num-mobile">2</span>
-              <h4 className="step__title">{t("reader2Title")}</h4>
-              <p className="step__text">{t("reader2Text")}</p>
-            </div>
-
-            <div className="step-num step-num--2" aria-label="Étape 2">
-              2
-            </div>
-
-            <div className="how__step how__step--creator-2">
-              <span className="step-num-mobile">2</span>
-              <h4 className="step__title">{t("creator2Title")}</h4>
-              <p className="step__text">
-                {t.rich("creator2Text", {
-                  b: (chunks) => <strong>{chunks}</strong>,
-                  link: (chunks) => <Link href="/pricing">{chunks}</Link>,
-                })}
-              </p>
-            </div>
-
-            <div className="how__step how__step--reader-3">
-              <span className="step-num-mobile">3</span>
-              <h4 className="step__title">{t("reader3Title")}</h4>
-              <p className="step__text">{t("reader3Text")}</p>
-            </div>
-
-            <div className="step-num step-num--3" aria-label="Étape 3">
-              3
-            </div>
-
-            <div className="how__group how__group--creator" aria-hidden="true">
-              <PenIcon />
-              <span>{t("creatorsGroup")}</span>
-            </div>
-
-            <div className="how__step how__step--creator-3">
-              <span className="step-num-mobile">3</span>
-              <h4 className="step__title">{t("creator3Title")}</h4>
-              <p className="step__text">{t("creator3Text")}</p>
-            </div>
+              <ol className="how-steps">
+                <li className="how-step">
+                  <span className="how-step__num">1</span>
+                  <div>
+                    <h3 className="how-step__title">{t("creator1Title")}</h3>
+                    <p className="how-step__text">{t("creator1Text")}</p>
+                  </div>
+                </li>
+                <li className="how-step">
+                  <span className="how-step__num">2</span>
+                  <div>
+                    <h3 className="how-step__title">{t("creator2Title")}</h3>
+                    <p className="how-step__text">
+                      {t.rich("creator2Text", {
+                        b: (chunks) => <strong>{chunks}</strong>,
+                        link: (chunks) => <Link href="/pricing">{chunks}</Link>,
+                      })}
+                    </p>
+                  </div>
+                </li>
+                <li className="how-step">
+                  <span className="how-step__num">3</span>
+                  <div>
+                    <h3 className="how-step__title">{t("creator3Title")}</h3>
+                    <p className="how-step__text">{t("creator3Text")}</p>
+                  </div>
+                </li>
+              </ol>
+            </article>
           </div>
         </div>
 
