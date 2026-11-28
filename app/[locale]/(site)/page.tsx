@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { loginUrl } from "@/lib/routes";
 import { CtaBand } from "@/components/sections/cta-band";
 import { MetricsBand } from "@/components/sections/metrics-band";
+import { MissionIllustration } from "@/components/sections/mission-illustration";
 import {
   BookIcon,
   GlobeIcon,
@@ -97,33 +98,12 @@ export default async function HomePage() {
           </div>
 
           <div className="mission__row">
-            <div className="mission__illustration" aria-hidden="true">
-              <span className="mission__sparkle mission__sparkle--1">
-                <SparkleIcon />
-              </span>
-              <span className="mission__sparkle mission__sparkle--2">
-                <SparkleIcon />
-              </span>
-
-              <div className="mission__tile mission__tile--reader">
-                <BookIcon />
-                <span className="mission__tile-lines">
-                  <span className="mission__tile-line mission__tile-line--wide" />
-                  <span className="mission__tile-line mission__tile-line--narrow" />
-                </span>
-              </div>
-
-              <div className="mission__tile mission__tile--creator">
-                <PenIcon />
-                <span className="mission__tile-lines">
-                  <span className="mission__tile-line mission__tile-line--wide" />
-                  <span className="mission__tile-line mission__tile-line--narrow" />
-                </span>
-              </div>
-            </div>
+            <MissionIllustration />
 
             <div className="mission__content">
-              <h2 className="mission__title">{t("missionTitle")}</h2>
+              <h2 className="mission__title">
+                {t("missionTitle")}
+              </h2>
               <div className="mission__body">
                 <p>{t("missionBody1")}</p>
                 <p>{t("missionBody2")}</p>
