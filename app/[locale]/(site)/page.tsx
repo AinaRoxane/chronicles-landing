@@ -152,41 +152,47 @@ export default async function HomePage() {
               </h2>
               <p className="community__intro">{t("communityIntro")}</p>
 
-              <div className="community__item">
-                <h3 className="community__item-title">
-                  {t("communityDiscoverTitle")}
-                </h3>
-                <p className="community__item-text">
-                  {t("communityDiscoverText")}
-                </p>
-              </div>
+              <ul className="community__list">
+                <li className="community__item">
+                  <span className="community__item-title">
+                    {t("communityDiscoverTitle")}
+                  </span>
+                  {" : "}
+                  <span className="community__item-text">
+                    {t("communityDiscoverText")}
+                  </span>
+                </li>
 
-              <div className="community__item">
-                <h3 className="community__item-title">
-                  {t("communityExchangeTitle")}
-                </h3>
-                <p className="community__item-text">
-                  {t("communityExchangeText")}
-                </p>
-              </div>
+                <li className="community__item">
+                  <span className="community__item-title">
+                    {t("communityExchangeTitle")}
+                  </span>
+                  {" : "}
+                  <span className="community__item-text">
+                    {t("communityExchangeText")}
+                  </span>
+                </li>
 
-              <div className="community__item">
-                <h3 className="community__item-title">
-                  {t("communityShareTitle")}
-                </h3>
-                <p className="community__item-text">
-                  {t("communityShareText")}
-                </p>
-              </div>
+                <li className="community__item">
+                  <span className="community__item-title">
+                    {t("communityShareTitle")}
+                  </span>
+                  {" : "}
+                  <span className="community__item-text">
+                    {t("communityShareText")}
+                  </span>
+                </li>
 
-              <div className="community__item">
-                <h3 className="community__item-title">
-                  {t("communityStayTitle")}
-                </h3>
-                <p className="community__item-text">
-                  {t("communityStayText")}
-                </p>
-              </div>
+                <li className="community__item">
+                  <span className="community__item-title">
+                    {t("communityStayTitle")}
+                  </span>
+                  {" : "}
+                  <span className="community__item-text">
+                    {t("communityStayText")}
+                  </span>
+                </li>
+              </ul>
             </div>
 
             <div className="community__illustration" aria-hidden="true">
