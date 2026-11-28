@@ -8,7 +8,10 @@
         }
 
         html {
-            scroll-behavior: smooth;
+            /* No `scroll-behavior: smooth` here on purpose: it makes Next.js'
+               route-change scroll reset animate, which can leave WebKit/Safari
+               at the previous scroll offset (landing near the footer). Anchor
+               links still clear the fixed header thanks to scroll-padding-top. */
             scroll-padding-top: calc(var(--header-height) + 16px);
         }
 
