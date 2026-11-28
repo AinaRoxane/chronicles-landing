@@ -926,6 +926,12 @@
     }
 }
 
+@media (min-width: 1000px) {
+    .mission__row {
+        grid-template-columns: 4fr 8fr;
+    }
+}
+
 .mission__illustration {
     position: relative;
     display: flex;
@@ -942,7 +948,9 @@
     align-items: center;
     justify-content: center;
     gap: 0.9rem;
-    width: min(148px, 40vw);
+    flex: 1 1 0;
+    max-width: 148px;
+    min-width: 0;
     height: 176px;
     background: var(--panel);
     border: 2.5px solid var(--ink);
