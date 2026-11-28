@@ -1082,7 +1082,7 @@
 }
 
 .community__item::before {
-    content: "✓";
+    content: "";
     position: absolute;
     top: 0.15rem;
     left: 0;
