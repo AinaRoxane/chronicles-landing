@@ -123,11 +123,7 @@ export default async function HomePage() {
             </div>
 
             <div className="mission__content">
-              <h2 className="mission__title">
-                {t("missionTitleLine1")}
-                <br />
-                {t("missionTitleLine2")}
-              </h2>
+              <h2 className="mission__title">{t("missionTitle")}</h2>
               <div className="mission__body">
                 <p>{t("missionBody1")}</p>
                 <p>{t("missionBody2")}</p>

@@ -1261,10 +1261,10 @@
 }
 
 .how-card {
-    padding: clamp(2.25rem, 3vw, 3rem);
+    padding: clamp(3rem, 5vw, 3rem);
     background: var(--white);
-    border: 1px solid var(--gray-200);
-    border-radius: 14px;
+    /* border: 1px solid var(--gray-200);
+    border-radius: 14px; */
 }
 
 .how-card__head {
@@ -1272,7 +1272,8 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    margin-bottom: 1.75rem;
+    margin-bottom: 5rem;
+    margin-top: -1rem;
     text-align: center;
 }
 
