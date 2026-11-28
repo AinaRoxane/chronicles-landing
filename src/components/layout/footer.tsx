@@ -34,6 +34,9 @@ export async function Footer() {
                 <Link href="/#how">{t("howItWorks")}</Link>
               </li>
               <li>
+                <Link href="/#communaute">{t("community")}</Link>
+              </li>
+              <li>
                 <Link href="/pricing">{t("pricing")}</Link>
               </li>
               <li>

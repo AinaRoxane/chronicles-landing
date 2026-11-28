@@ -7,10 +7,14 @@ import { CtaBand } from "@/components/sections/cta-band";
 import { MetricsBand } from "@/components/sections/metrics-band";
 import {
   BookIcon,
+  FeedIcon,
   GlobeIcon,
+  HeartIcon,
   LayersIcon,
+  LinkIcon,
   PenIcon,
   SparkleIcon,
+  UserPlusIcon,
 } from "@/components/ui/icons";
 import "@/styles/pages/home.css";
 
@@ -102,6 +106,61 @@ export default async function HomePage() {
               <p>{t("missionBody3")}</p>
             </div>
           </article>
+        </div>
+      </section>
+
+      {/* ===== COMMUNITY ===== */}
+      <section id="communaute" className="community">
+        <div className="container">
+          <header className="community__header">
+            <span className="eyebrow">{t("communityEyebrow")}</span>
+            <h2 className="section-title">
+              {t.rich("communityTitle", { hl: highlight })}
+            </h2>
+            <p className="community__subtitle">{t("communitySubtitle")}</p>
+          </header>
+
+          <div className="community__grid">
+            <article className="community-card">
+              <span className="community-card__icon" aria-hidden="true">
+                <FeedIcon />
+              </span>
+              <h3 className="community-card__title">
+                {t("communityFeedTitle")}
+              </h3>
+              <p className="community-card__text">{t("communityFeedText")}</p>
+            </article>
+
+            <article className="community-card">
+              <span className="community-card__icon" aria-hidden="true">
+                <HeartIcon />
+              </span>
+              <h3 className="community-card__title">
+                {t("communityReactTitle")}
+              </h3>
+              <p className="community-card__text">{t("communityReactText")}</p>
+            </article>
+
+            <article className="community-card">
+              <span className="community-card__icon" aria-hidden="true">
+                <LinkIcon />
+              </span>
+              <h3 className="community-card__title">
+                {t("communityShareTitle")}
+              </h3>
+              <p className="community-card__text">{t("communityShareText")}</p>
+            </article>
+
+            <article className="community-card">
+              <span className="community-card__icon" aria-hidden="true">
+                <UserPlusIcon />
+              </span>
+              <h3 className="community-card__title">
+                {t("communityFollowTitle")}
+              </h3>
+              <p className="community-card__text">{t("communityFollowText")}</p>
+            </article>
+          </div>
         </div>
       </section>
 
