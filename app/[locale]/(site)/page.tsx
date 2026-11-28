@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
@@ -22,10 +23,11 @@ import "@/styles/pages/home.css";
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Metadata.home");
 
-  return {
+  return pageMetadata({
     title: t("title"),
     description: t("description"),
-  };
+    path: "/",
+  });
 }
 
 export default async function HomePage() {

@@ -34,7 +34,7 @@
 
         @media (min-width: 1024px) {
             .footer__content {
-                grid-template-columns: 2fr 1fr 1fr 1fr;
+                grid-template-columns: 2fr 1fr 1fr;
                 gap: 3rem;
             }
         }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
@@ -9,10 +10,11 @@ import "@/styles/pages/about.css";
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Metadata.about");
 
-  return {
+  return pageMetadata({
     title: t("title"),
     description: t("description"),
-  };
+    path: "/about",
+  });
 }
 
 function SectionLabel({ num, label }: { num: string; label: string }) {

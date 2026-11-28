@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
@@ -9,10 +10,11 @@ import "@/styles/pages/creators.css";
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Metadata.creators");
 
-  return {
+  return pageMetadata({
     title: t("title"),
     description: t("description"),
-  };
+    path: "/creators",
+  });
 }
 
 const FEATURES = [1, 2, 3, 4] as const;

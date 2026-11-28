@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { getTranslations } from "next-intl/server";
 import { CtaBand } from "@/components/sections/cta-band";
@@ -14,10 +15,11 @@ import "@/styles/pages/pricing.css";
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Metadata.pricing");
 
-  return {
+  return pageMetadata({
     title: t("title"),
     description: t("description"),
-  };
+    path: "/pricing",
+  });
 }
 
 export default async function PricingPage() {

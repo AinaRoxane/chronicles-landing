@@ -7,7 +7,11 @@ export const siteConfig = {
   appOrigin: process.env.NEXT_PUBLIC_APP_ORIGIN ?? "http://localhost:3000",
   feedbackEmail: process.env.FEEDBACK_EMAIL ?? "hello@roxaina.me",
   socials: {
-    facebook: process.env.NEXT_PUBLIC_FACEBOOK_URL ?? "",
-    tiktok: process.env.NEXT_PUBLIC_TIKTOK_URL ?? "",
+    facebook:
+      process.env.NEXT_PUBLIC_FACEBOOK_URL ||
+      "https://web.facebook.com/roxaina.mee",
+    tiktok:
+      process.env.NEXT_PUBLIC_TIKTOK_URL ||
+      "https://www.tiktok.com/@roxane_aina",
   },
 } as const;

@@ -5,9 +5,10 @@ import { routing } from "./src/i18n/routing";
 export default createMiddleware(routing);
 
 export const config = {
-  // Match every pathname except Next internals and public assets. Unlike the
-  // default next-intl matcher we do NOT skip dotted paths, so requests like
-  // `/unknown.txt` are still resolved to the locale 404 page instead of
-  // falling through to Next's built-in error document.
-  matcher: "/((?!api|trpc|_next|_vercel|images|favicon.ico).*)",
+  // Match every pathname except Next internals, public assets and the
+  // metadata endpoints (robots.txt, sitemap.xml, llms.txt), which must be
+  // served by Next directly. Unlike the default next-intl matcher we do NOT
+  // skip every dotted path, so `/unknown.txt` still resolves to the locale 404.
+  matcher:
+    "/((?!api|trpc|_next|_vercel|images|favicon.ico|robots.txt|sitemap.xml|llms.txt).*)",
 };
